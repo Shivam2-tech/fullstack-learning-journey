@@ -1,0 +1,75 @@
+#container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #3c3f70;
+    width: 500px;
+    padding: 20px; /* Optional: adds breathing room inside the dark box */
+    border-radius: 32px 32px 32px 32px;
+    box-shadow:0 0 0 10px rgba(44, 47, 85, 0.4), 
+    0 15px 30px rgba(15,17, 32, 0.5);
+    padding: 24px;
+    box-sizing: border-box;
+    border-color: rgb(45, 45, 86);
+    border:1px solid rgba(255, 255, 255, 0.05);
+}
+#control{
+    display: flex;
+    align-items: center;    /* Vertically aligns the input and button perfectly */
+    justify-content: center; /* Centers the whole search bar layout on the page */
+    gap: 10px;
+}
+#inp{
+    padding: 10px;
+    border-radius: 8px 8px 8px 8px;
+    background-color: #3c3f70;
+    width:350px;
+    box-shadow:0 0 0 10px rgba(44, 47, 85, 0.4), 
+    0 15px 30px rgba(15,17, 32, 0.5);
+    margin-bottom: 15px;
+    margin-right: 20px;
+    box-sizing: border-box;  /* Ensures padding doesn't distort height */
+    height: 40px;
+    color:white;
+}
+#btn{
+     padding: 10px;
+    border-radius: 8px 8px 8px 8px;
+    background-color: #3c3f70;
+    width:100px;
+    box-sizing: border-box;  /* Ensures padding doesn't distort height */
+    height: 40px;
+    box-shadow:0 0 0 10px rgba(44, 47, 85, 0.4), 
+    0 15px 30px rgba(15,17, 32, 0.5);
+    margin-bottom: 15px;
+}
+#info {
+    display: flex;
+    flex-direction: row; /* This keeps items in a row */
+    justify-content: center; /* Centers the text items */
+    gap: 15px; /* This creates a specific gap between the Name and Year */
+    width: 100%; /* Important: forces the div to take up the full width of the container */
+    margin-bottom: 10px; /* Adds space between the text and the image */
+}
+
+/* Optional: styling the text to look cleaner */
+#name{
+    margin: 0;
+    color: white; 
+}
+#year{
+    margin: 0;
+    color: white; 
+}
+#imdb, #plot{
+    color:white;
+}
+body{
+    display: grid;
+    place-items: center;
+    background-color: #232644;
+}
+#img{
+    border-radius: 4px 4px 4px 4px;
+}
