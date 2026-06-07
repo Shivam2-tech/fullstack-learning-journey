@@ -30,7 +30,7 @@ btn.addEventListener("click", async function weather() {
     try {
         let city = inp.value.toLowerCase();
         const response = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=16bd1a4ea3aaefc6222067adee493cbb&units=metric`
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=YOUR_API_KEY&units=metric`
         );
         if (!response.ok) {
             alert("City not found");
