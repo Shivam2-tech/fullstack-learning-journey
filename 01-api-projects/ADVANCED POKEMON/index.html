@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokemon TCG Card Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="controls">
+    <input type="text" id="searchInput" placeholder="Enter Pokemon name or ID">
+    <button id="searchBtn">Search</button>
+    <button id="randomBtn">Randomize</button>
+  </div>
+
+  <div class="tcg-card">
+    <div class="card-inner">
+      <div class="card-header">
+        <span class="stage">BASIC</span>
+        <h2 class="name" id="poke-name">Pikachu</h2>
+        <div class="hp">HP <span id="poke-hp">60</span></div>
+        <div class="type-icon" id="type-icon"></div>
+      </div>
+
+      <div class="artwork">
+        <img id="poke-img" src="" alt="Pokemon">
+      </div>
+
+      <div class="info-bar" id="poke-info">
+        NO. 0025 Mouse Pokemon HT: 1'04" WT: 13.2 lbs.
+      </div>
+
+      <div class="attacks">
+        <div class="attack">
+          <div class="attack-header">
+            <div class="energy"></div>
+            <span>Charge</span>
+          </div>
+          <p class="attack-desc">
+            Search your deck for a Basic Energy card and attach it to this Pokemon.
+          </p>
+        </div>
+
+        <div class="attack">
+          <div class="attack-header">
+            <div class="energy"></div>
+            <div class="energy"></div>
+            <span>Pika Punch</span>
+            <span class="damage">50</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-bar">
+        <span>weakness ×2</span>
+        <span>resistance</span>
+        <span>retreat *</span>
+      </div>
+
+      <p class="flavor-text" id="flavor">
+        Loading...
+      </p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

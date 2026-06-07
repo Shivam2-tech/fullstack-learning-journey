@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700;900&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#2d3436;
+  display:grid;
+  place-items:center;
+  min-height:100vh;
+  font-family:'Fira Sans',sans-serif;
+  gap:20px;
+}
+
+.controls{
+  display:flex;
+  gap:10px;
+}
+
+.controls input{
+  padding:10px 14px;
+  border-radius:8px;
+  border:none;
+  width:220px;
+}
+
+.controls button{
+  padding:10px 16px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  background:#f1c40f;
+  box-shadow:0 4px 8px rgba(0,0,0,.3);
+}
+
+.controls button:active{
+  transform:translateY(2px);
+}
+
+.tcg-card{
+  width:320px;
+  background:linear-gradient(135deg,#d4d4d4,#a8a8a8);
+  border-radius:18px;
+  padding:12px;
+  box-shadow:
+    0 0 0 2px #666,
+    0 8px 20px rgba(0,0,0,.6),
+    inset 0 2px 4px rgba(255,255,255,.5);
+}
+
+.tcg-card.loading{
+  opacity:.6;
+  pointer-events:none;
+}
+
+.card-inner{
+  background:linear-gradient(180deg,#f9d71c,#f4c430);
+  border-radius:8px;
+  padding:8px;
+  border:2px solid #b8860b;
+}
+
+.card-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+}
+
+.stage{
+  font-size:10px;
+  font-weight:900;
+  background:#ddd;
+  padding:2px 6px;
+  border-radius:10px;
+}
+
+.name{
+  font-size:20px;
+  font-weight:900;
+  margin:0 auto 0 8px;
+  text-transform:capitalize;
+}
+
+.hp{
+  font-size:10px;
+  font-weight:700;
+}
+
+.hp span{
+  font-size:22px;
+  font-weight:900;
+}
+
+.type-icon{
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  background:#f1c40f;
+}
+
+.artwork{
+  margin:6px 0;
+  background:linear-gradient(180deg,#87ceeb,#98d8c8);
+  border:4px solid #b8860b;
+  border-style:ridge;
+  height:180px;
+  display:grid;
+  place-items:center;
+}
+
+.artwork img{
+  max-width:90%;
+  max-height:90%;
+}
+
+.info-bar{
+  background:linear-gradient(180deg,#c0c0c0,#808080);
+  font-size:8px;
+  text-align:center;
+  padding:2px;
+  margin:4px 0;
+  font-weight:700;
+}
+
+.attacks{
+  margin-top:12px;
+}
+
+.attack{
+  margin-bottom:12px;
+}
+
+.attack-header{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:900;
+}
+
+.energy{
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:#f1c40f;
+}
+
+.damage{
+  margin-left:auto;
+  font-size:18px;
+}
+
+.attack-desc{
+  font-size:11px;
+  margin-top:4px;
+  line-height:1.3;
+}
+
+.bottom-bar{
+  display:flex;
+  justify-content:space-between;
+  font-size:9px;
+  font-weight:700;
+  border-top:1px solid #b8860b;
+  padding-top:4px;
+  margin-top:8px;
+}
+
+.flavor-text{
+  font-size:9px;
+  font-style:italic;
+  margin-top:6px;
+  text-align:right;
+  min-height:30px;
+}
+
+/* Type Icon Colors */
+.normal{background:#A8A77A;}
+.fire{background:#EE8130;}
+.water{background:#6390F0;}
+.electric{background:#F7D02C;}
+.grass{background:#7AC74C;}
+.ice{background:#96D9D6;}
+.fighting{background:#C22E28;}
+.poison{background:#A33EA1;}
+.ground{background:#E2BF65;}
+.flying{background:#A98FF3;}
+.psychic{background:#F95587;}
+.bug{background:#A6B91A;}
+.rock{background:#B6A136;}
+.ghost{background:#735797;}
+.dragon{background:#6F35FC;}
+.dark{background:#705746;}
+.steel{background:#B7B7CE;}
+.fairy{background:#D685AD;}

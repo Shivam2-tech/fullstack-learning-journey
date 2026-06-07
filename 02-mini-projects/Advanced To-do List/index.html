@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1 id="h1">To-Do List App</h1>
+        <br>
+        <div class="uf">
+
+        <input id="inp" type="text" placeholder="Enter Task...">
+        <select id="s">
+            <option value="high">HIGH</option>
+            <option value="low">LOW</option>
+        </select>
+        <button class="add" onclick="add()"><strong>+</strong></button>
+        </div>
+        <main class="main">
+            <section class="s1">
+                <h1>High Priority Tasks</h1>
+                <article id="a1">
+                </article>
+            </section>
+
+            <section class="s2">
+                <h1>low Priority Tasks</h1>
+                <article id="a2">
+                </article>
+            </section>
+        </main>
+        
+    </body>
+
+    <script src="logic.js"></script>
+</html>

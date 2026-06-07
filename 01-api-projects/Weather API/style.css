@@ -1,0 +1,74 @@
+#inp{
+    background-color: bisque;
+    border: 2px solid rgb(105, 67, 67);
+    border-radius: 4px;
+    padding: 10px;
+    margin:4px;
+    box-shadow: 4px 4px 4px gray;
+    color: black;
+    margin-bottom: 20px;
+}
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    display: grid;
+    place-items: center;
+
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+
+    font-family: sans-serif;
+}
+#card{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 320px;
+    padding: 20px;
+
+    border-radius: 20px;
+
+    /* Glass effect */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.25);
+
+    color: white;
+    animation: float 4s ease-in-out infinite;
+    
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+#loc{
+    display:flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    width:100%;
+}
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    gap: 20px;
+}
+p, h2 {
+    margin: 5px 0;
+    text-align: center;
+}
+#img {
+    width: 120px;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+}
