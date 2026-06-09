@@ -1,4 +1,4 @@
-const movies = [{
+let movies = [{
         id: 1,
         title: "Interstellar",
         rating: 9.0,
