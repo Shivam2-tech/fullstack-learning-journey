@@ -4,19 +4,50 @@ const Movie = require("../models/Movie");
 const validate = require("../middleware/validate");
 
 router.get("/", async (req, res) => {
-    const movies = await Movie.find();
+
+    const { rating, year, sort, limit } = req.query;
+
+    const query = {};
+
+    if (rating) {
+        query.rating = Number(rating);
+    }
+
+    if (year) {
+        query.year = Number(year);
+    }
+
+    let moviesQuery = Movie.find(query);
+
+    if (sort === "year") {
+        moviesQuery = moviesQuery.sort({ year: 1 });
+    }
+
+    if (sort === "-year") {
+        moviesQuery = moviesQuery.sort({ year: -1 });
+    }
+
+    if (limit) {
+        moviesQuery = moviesQuery.limit(Number(limit));
+    }
+
+    const movies = await moviesQuery;
 
     res.json(movies);
 });
 
-router.get("/id/:id", async(req, res) => {
+router.get("/id/:id", async (req, res) => {
     const id = req.params.id;
 
     const newId = await Movie.findById(id);
 
-    res.status(404).json(newId || {
-        text: "Movie not Found"
-    });
+    if (!newId) {
+        return res.status(404).json({
+            text: "Movie not Found"
+        });
+    }
+
+    res.status(200).json(newId);
 });
 
 router.get("/movie/:title", async (req, res) => {
@@ -56,27 +87,29 @@ router.delete("/id/:id", async (req, res) => {
     });
 });
 
-router.put("/id/:id", validate.validate, async(req, res) => {
-    const updateMovie= await Movie.findByIdAndUpdate(
+router.put("/id/:id", validate.validate, async (req, res) => {
+    const updateMovie = await Movie.findByIdAndUpdate(
         req.params.id,
-        req.body,
-        {new:true}
+        req.body, {
+            new: true
+        }
     );
 
-    if(!updateMovie){
+    if (!updateMovie) {
         return res.status(404).json({
-            msg:"Movie NOt FOund !"
+            msg: "Movie NOt FOund !"
         });
     }
     res.json(updateMovie);
 });
 
-router.patch("/id/:id", validate.validatePatch, async(req, res) => {
+router.patch("/id/:id", validate.validatePatch, async (req, res) => {
 
     const updatedMovie = await Movie.findByIdAndUpdate(
         req.params.id,
-        req.body,
-        { new: true }
+        req.body, {
+            new: true
+        }
     );
 
     if (!updatedMovie) {
