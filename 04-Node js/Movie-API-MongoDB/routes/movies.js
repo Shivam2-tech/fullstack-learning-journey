@@ -121,4 +121,18 @@ router.patch("/id/:id", validate.validatePatch, async (req, res) => {
     res.json(updatedMovie);
 });
 
+router.get("/test", async (req, res, next) => {
+
+    try {
+
+        throw new Error("Testing Error");
+
+    } catch (err) {
+
+        next(err);
+
+    }
+
+});
+
 module.exports = router;
