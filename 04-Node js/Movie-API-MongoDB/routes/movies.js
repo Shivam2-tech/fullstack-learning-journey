@@ -2,10 +2,15 @@ const express = require("express");
 const router = express.Router();
 const Movie = require("../models/Movie");
 const validate = require("../middleware/validate");
-
+const auth=require("../middleware/auth");
 router.get("/", async (req, res) => {
 
-    const { rating, year, sort, limit } = req.query;
+    const {
+        rating,
+        year,
+        sort,
+        limit
+    } = req.query;
 
     const query = {};
 
@@ -20,11 +25,15 @@ router.get("/", async (req, res) => {
     let moviesQuery = Movie.find(query);
 
     if (sort === "year") {
-        moviesQuery = moviesQuery.sort({ year: 1 });
+        moviesQuery = moviesQuery.sort({
+            year: 1
+        });
     }
 
     if (sort === "-year") {
-        moviesQuery = moviesQuery.sort({ year: -1 });
+        moviesQuery = moviesQuery.sort({
+            year: -1
+        });
     }
 
     if (limit) {
@@ -34,6 +43,8 @@ router.get("/", async (req, res) => {
     const movies = await moviesQuery;
 
     res.json(movies);
+
+
 });
 
 router.get("/id/:id", async (req, res) => {
@@ -64,15 +75,16 @@ router.get("/movie/:title", async (req, res) => {
     res.json(movie);
 });
 
-router.post("/", validate.validate, async (req, res) => {
-    const newMovie = await Movie.create(req.body);
-    res.status(201).json({
-        msg: "Movie received",
-        movie: newMovie
-    });
+router.post("/", auth, validate.validate, async (req, res) => {
+
+        const newMovie = await Movie.create(req.body);
+        res.status(201).json({
+            msg: "Movie received",
+            movie: newMovie
+        });
 });
 
-router.delete("/id/:id", async (req, res) => {
+router.delete("/id/:id",auth , async (req, res) => {
     const deletedMovie = await Movie.findByIdAndDelete(req.params.id);
 
     if (!deletedMovie) {
@@ -87,7 +99,7 @@ router.delete("/id/:id", async (req, res) => {
     });
 });
 
-router.put("/id/:id", validate.validate, async (req, res) => {
+router.put("/id/:id",auth, validate.validate, async (req, res) => {
     const updateMovie = await Movie.findByIdAndUpdate(
         req.params.id,
         req.body, {
@@ -103,7 +115,7 @@ router.put("/id/:id", validate.validate, async (req, res) => {
     res.json(updateMovie);
 });
 
-router.patch("/id/:id", validate.validatePatch, async (req, res) => {
+router.patch("/id/:id",auth, validate.validatePatch, async (req, res) => {
 
     const updatedMovie = await Movie.findByIdAndUpdate(
         req.params.id,
