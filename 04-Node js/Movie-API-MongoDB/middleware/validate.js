@@ -2,7 +2,7 @@ function validate(req,res,next){
     const body=req.body || {};
     console.log(req.body);
 
-    if (!body.title || !body.rating || !body.year) {
+    if (!body.title || !body.content || !body.year) {
         return res.status(400).json({
             msg: "All Fields Required"
         });
