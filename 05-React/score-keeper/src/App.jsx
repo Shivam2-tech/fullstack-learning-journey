@@ -1,42 +1,128 @@
-import {useState} from "react";
+import { useState } from "react";
 
-function Player(props){
-
+function Player(props) {
   return (
     <div>
-      <p>Score of {props.name} of age:{props.age} who lives in {props.city}:{props.score}</p>
+      <p>
+        Score of {props.name} (Age: {props.age}) who lives in {props.city}:{" "}
+        {props.score}
+      </p>
+
       <button onClick={props.increase}>+1</button>
       <button onClick={props.decrease}>-1</button>
       <button onClick={props.reset}>RESET</button>
+
+      <hr />
     </div>
   );
 }
-function App(){
 
-  const [score1,setScore1]=useState(0);
-  const [score2,setScore2]=useState(0);
-  const [score3,setScore3]=useState(0);
+function App() {
+  const [players, setPlayers] = useState([
+    {
+      id: 1,
+      name: "Shivam",
+      age: 18,
+      city: "Dharashiv",
+      score: 0,
+    },
+    {
+      id: 2,
+      name: "Shiv",
+      age: 22,
+      city: "Pune",
+      score: 0,
+    },
+    {
+      id: 3,
+      name: "Tony Stark",
+      age: 45,
+      city: "Malibu",
+      score: 0,
+    },
+  ]);
 
-  const players=[
-    {name:"Shivam",age:18,city:"Dharashiv",score:score1,increase:()=>setScore1(score1+1) , decrease:()=>setScore1(score1-1), reset:()=>setScore1(0)},
-    {name:"Shivam",age:18,city:"Dharashiv",score:score2,increase:()=>setScore2(score2+1) , decrease:()=>setScore2(score2-1), reset:()=>setScore2(0)},
-    {name:"Shivam",age:18,city:"Dharashiv",score:score3,increase:()=>setScore3(score3+1) , decrease:()=>setScore3(score3-1), reset:()=>setScore3(0)}
-  ]
-  let total=score1+score2+score3;
+  function increaseScore(id) {
+    const updatedPlayers = players.map((player) => {
+      if (player.id === id) {
+        return {
+          ...player,
+          score: player.score + 1,
+        };
+      }
+
+      return player;
+    });
+
+    setPlayers(updatedPlayers);
+  }
+
+  function decreaseScore(id) {
+    const updatedPlayers = players.map((player) => {
+      if (player.id === id) {
+        return {
+          ...player,
+          score: player.score - 1,
+        };
+      }
+
+      return player;
+    });
+
+    setPlayers(updatedPlayers);
+  }
+
+  function resetScore(id) {
+    const updatedPlayers = players.map((player) => {
+      if (player.id === id) {
+        return {
+          ...player,
+          score: 0,
+        };
+      }
+
+      return player;
+    });
+
+    setPlayers(updatedPlayers);
+  }
+
+  function resetAll() {
+    const updatedPlayers = players.map((player) => {
+      return {
+        ...player,
+        score: 0,
+      };
+    });
+
+    setPlayers(updatedPlayers);
+  }
+
+  const total = players.reduce(
+    (sum, player) => sum + player.score,
+    0
+  );
 
   return (
     <div>
       <h1>Score Keeper</h1>
-      {
-        players.map(x=>(
-         <Player name={x.name} age={x.age} city={x.city} score={x.score} increase={x.increase} decrease={x.decrease} reset={x.reset}/>
-        ))
-      }
-      <button onClick={()=>{
-        setScore1(0);
-        setScore2(0);
-        setScore3(0);
-      }}>RESET ALL</button>
+
+      {players.map((player) => (
+        <Player
+          key={player.id}
+          name={player.name}
+          age={player.age}
+          city={player.city}
+          score={player.score}
+          increase={() => increaseScore(player.id)}
+          decrease={() => decreaseScore(player.id)}
+          reset={() => resetScore(player.id)}
+        />
+      ))}
+
+      <h2>Total Score: {total}</h2>
+
+      <button onClick={resetAll}>RESET ALL</button>
     </div>
   );
 }
