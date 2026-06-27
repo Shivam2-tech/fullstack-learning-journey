@@ -6,7 +6,7 @@ function App() {
   const [pokemons, setPokemons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [dropDown, setDropDown] = useState("all");
-
+  const [error,seterror]=useState("");
 
   const filtered = pokemons.filter(x =>
     x.name.toLowerCase().includes(search.toLowerCase())
@@ -22,10 +22,10 @@ function App() {
   console.log(typed); 
   useEffect(() => {
     async function fetchPokemon() {
-
+      try{
       // Fetch list
       const response = await fetch(
-        "https://pokeapi.co/api/v2/pokemon?limit=100"
+        "https://pokeapi.co/api/v2/pokemon?limit=200"
       );
       if (!response.ok) {
         console.log("No Response")
@@ -48,7 +48,14 @@ function App() {
 
       setPokemons(detailedPokemon);
       setLoading(false);
+    }catch(error){
+        seterror("Loading failed")
     }
+    finally{
+      setLoading(false)
+    }
+    }
+  
 
     fetchPokemon();
   }, []);
@@ -76,10 +83,13 @@ function App() {
           <option>psychic</option>
           <option>rock</option>
           <option>ghost</option>
+          <option>dragon</option>
+          <option>ice</option>
+          <option>dark</option>
         </select>
       </div>
 
-
+      {error && <h2>{error}</h2>}
       {!loading && filtered.length === 0 && <p>No Pokemon Found</p>}
       {loading && <h2>Loading.......</h2>}
       {/* {filtered.map(x => (
