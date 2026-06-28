@@ -19,7 +19,7 @@ function App() {
     }
     return dropDown === x.type
   }
-  )       //Filters Array based on User Selected Type from Dropdown Menu
+  )       //Filte`rs Array based on User Selected Type from Dropdown Menu
 
   function fav(url) {
     const favs = pokemons.map(x => {
@@ -36,7 +36,15 @@ function App() {
 
   const loved = typed.filter(x => x.favourite) // Filters Only those Pokemons who are marked as Favourites
 
-  let count=loved.length;
+  let count = loved.length;
+
+ useEffect(() => {
+  if (pokemons.length > 0) {
+    localStorage.setItem("pokemons", JSON.stringify(pokemons));
+  }
+}, [pokemons]);
+
+
 
   useEffect(() => {       //Data Fetching from Pokemon API once The code Runs
     async function fetchPokemon() {
@@ -75,8 +83,21 @@ function App() {
       }
     }
 
-
-    fetchPokemon();
+    const saved = localStorage.getItem("pokemons");
+    
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      
+      if (parsed.length>0) {
+        setPokemons(parsed);
+        setLoading(false);
+      }else{
+        fetchPokemon();
+      }
+    }
+    else {
+      fetchPokemon();
+    }
   }, []);
 
   return (
