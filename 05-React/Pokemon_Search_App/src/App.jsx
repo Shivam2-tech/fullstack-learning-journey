@@ -9,6 +9,9 @@ function App() {
   const [error, setError] = useState("");
   const [favorite, setFav] = useState(false);
   const [sort, setSort] = useState("default");
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const perPage = 10;
 
   // Filter by search
   const filtered = pokemons.filter(x =>
@@ -32,19 +35,26 @@ function App() {
   const loved = typed.filter(x => x.favourite);
 
   // Count favourites
-  const count = loved.length;
+  const count = pokemons.filter(x => x.favourite).length;
 
   // Decide which list to display
   const displayed = favorite ? loved : typed;
 
   // Sorting
-  const sortedList = [...displayed]
+  let sortedList = [...displayed];
   if (sort === "az") {
     sortedList.sort((a, b) => a.name.localeCompare(b.name));
   }
   if (sort === "za") {
     sortedList.sort((a, b) => b.name.localeCompare(a.name));
   }
+
+  // Pagination
+  const start = (currentPage - 1) * perPage;
+  const end = start + perPage;
+  const paginatedPage = sortedList.slice(start, end);
+
+  const totalPages = Math.ceil(sortedList.length / perPage);
 
   // Save to localStorage
   useEffect(() => {
@@ -154,7 +164,7 @@ function App() {
       {!loading && filtered.length === 0 && <p>No Pokemon Found</p>}
       {loading && <h2>Loading.......</h2>}
 
-      {sortedList.map((x) => (
+      {paginatedPage.map((x) => (
         <PokemonCard
           key={x.url}
           name={x.name}
@@ -164,6 +174,22 @@ function App() {
           fav={x.favourite}
         />
       ))}
+
+      <div className="pagination">
+        <button
+          disabled={currentPage === 1}
+          onClick={() => setCurrentPage(currentPage - 1)}
+        >
+          Previous
+        </button>
+        <span>Page {currentPage} of {totalPages}</span>
+        <button
+          disabled={currentPage === totalPages}
+          onClick={() => setCurrentPage(currentPage + 1)}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }
