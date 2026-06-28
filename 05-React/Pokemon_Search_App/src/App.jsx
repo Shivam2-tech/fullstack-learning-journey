@@ -31,6 +31,23 @@ function App() {
     setPokemons(favs);
   }
 
+  //Clear All Favourites Logic
+  function clearFav() {
+    const cleared = pokemons.map(x => ({
+      ...x,
+      favourite: false
+    }));
+    setPokemons(cleared);
+  }
+
+  function AllFav() {
+    const AllFav = pokemons.map(x => ({
+      ...x,
+      favourite: true
+    }));
+    setPokemons(AllFav);
+  }
+
   // Filter favourites
   const loved = typed.filter(x => x.favourite);
 
@@ -56,6 +73,10 @@ function App() {
 
   const totalPages = Math.ceil(sortedList.length / perPage);
 
+  const pages = Array.from(
+    { length: totalPages },
+    (_, index) => index + 1
+  );
   // Save to localStorage
   useEffect(() => {
     if (pokemons.length > 0) {
@@ -101,7 +122,7 @@ function App() {
     const saved = localStorage.getItem("pokemons");
     if (saved) {
       const parsed = JSON.parse(saved);
-      if (parsed.length > 0) {
+      if (parsed.length === 100) {
         setPokemons(parsed);
         setLoading(false);
       } else {
@@ -111,6 +132,11 @@ function App() {
       fetchPokemon();
     }
   }, []);
+
+  // Reset to page 1 whenever search/filter/sort/favourite changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, dropDown, favorite, sort]);
 
   return (
     <div className="body">
@@ -158,6 +184,10 @@ function App() {
         </select>
 
         <h3>{count}</h3>
+
+        <button onClick={() => clearFav()}>Clear All Favourites</button>
+        <button onClick={() => AllFav()}>All Favourites</button>
+
       </div>
 
       {error && <h2>{error}</h2>}
@@ -183,12 +213,27 @@ function App() {
           Previous
         </button>
         <span>Page {currentPage} of {totalPages}</span>
+
         <button
           disabled={currentPage === totalPages}
           onClick={() => setCurrentPage(currentPage + 1)}
         >
           Next
         </button>
+
+
+        <div className="pagination">
+          {pages.map(page => (
+            <button
+              disabled={currentPage===page}
+              key={page}
+              onClick={() => setCurrentPage(page)}
+            >
+              {page}
+            </button>
+          ))}
+        </div>
+
       </div>
     </div>
   );
