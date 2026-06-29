@@ -66,37 +66,33 @@ function App() {
     sortedList.sort((a, b) => b.name.localeCompare(a.name));
   }
   if (sort === "favFirst") {
-    sortedList.sort((a, b) => {
-      if (a.favourite === !b.favourite) {
-        return -1;
-      }
-      else if (!a.favourite === b.favourite) {
-        return 1;
-      }
-      else {
-        return 0;
-      }
-    })
-  }
+    sortedList.sort((a, b) => b.favourite - a.favourite);
+  }  //logic -> -1=a before b , 0=keep as it is , 1=b before a
 
 
   //Count of All pokemons to their Types
 
-  const stats=pokemons.reduce((sum,x)=>{
-  
-      sum[x.type]=(sum[x.type]||0)+1;
-      return sum;
-    
-  },{});
+  const stats = pokemons.reduce((sum, x) => {
+
+    sum[x.type] = (sum[x.type] || 0) + 1;
+    return sum;
+
+  }, {});
+
+
+  //Sort Pokemon Type count Ascending Order
+  const sortedStats = Object.entries(stats).sort((a, b) => a[1] - b[1]);
+  const mostCommon=sortedStats[sortedStats.length-1];
+  const leastCommon=sortedStats[0];
 
   //Favourite count with Reduce
 
-  const favCount=pokemons.reduce((sum,x)=>{
-    if(x.favourite){
+  const favCount = pokemons.reduce((sum, x) => {
+    if (x.favourite) {
       sum++;
     }
     return sum;
-  },0);
+  }, 0);
 
   console.log(favCount)
   // Pagination
@@ -269,11 +265,15 @@ function App() {
             </button>
           ))}
         </div>
-          {
-            Object.entries(stats).map(([type,x])=>{
-             return <h2 key={type}>{type}:{count}</h2>
-            })
-          }
+        {
+          sortedStats.map(([type, x]) => (
+            <h2 key={type}>
+              {type}:{x} ({((x/100)*100).toFixed(0)})%
+            </h2>
+          ))
+        }
+        <h3>Most Common Type={mostCommon[0]}-{mostCommon[1]}</h3>
+        <h3>Least Common Type={leastCommon[0]}-{leastCommon[1]}</h3>
       </div>
     </div>
   );
