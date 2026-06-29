@@ -73,7 +73,6 @@ function App() {
 
 
   //Count of All pokemons to their Types
-
   const stats = pokemons.reduce((sum, x) => {
 
     sum[x.type] = (sum[x.type] || 0) + 1;
@@ -88,7 +87,6 @@ function App() {
   const leastCommon = sortedStats[0];
 
   //Favourite count with Reduce
-
   const favCount = pokemons.reduce((sum, x) => {
     if (x.favourite) {
       sum++;
@@ -96,7 +94,6 @@ function App() {
     return sum;
   }, 0);
 
-  console.log(favCount)
   // Pagination
   const start = (currentPage - 1) * perPage;
   const end = start + perPage;
@@ -122,7 +119,7 @@ function App() {
     async function fetchPokemon() {
       try {
         const response = await fetch(
-          "https://pokeapi.co/api/v2/pokemon?limit=100"
+          "https://pokeapi.co/api/v2/pokemon?limit=200"
         );
         if (!response.ok) {
           throw new Error("No Response");
@@ -155,7 +152,7 @@ function App() {
     const saved = localStorage.getItem("pokemons");
     if (saved) {
       const parsed = JSON.parse(saved);
-      if (parsed.length === 100) {
+      if (parsed.length>0) {
         setPokemons(parsed);
         setLoading(false);
       } else {
