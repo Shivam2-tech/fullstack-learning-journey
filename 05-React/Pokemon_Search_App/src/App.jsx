@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import PokemonCard from './PokemonCard';
+import PokemonDetail  from './PokemonDetail';
 
 function App() {
   const [search, setSearch] = useState(""); //SEARCHBAR
@@ -10,6 +11,7 @@ function App() {
   const [favorite, setFav] = useState(false); // FAVOURITE STATE
   const [sort, setSort] = useState("default"); // SORTED STATE
   const [currentPage, setCurrentPage] = useState(1);  //PAGINATION PURPOSE
+  const [selectedPokemon, setselectedPokemon] = useState(null);
 
   const perPage = 10;
 
@@ -82,8 +84,8 @@ function App() {
 
   //Sort Pokemon Type count Ascending Order
   const sortedStats = Object.entries(stats).sort((a, b) => a[1] - b[1]);
-  const mostCommon=sortedStats[sortedStats.length-1];
-  const leastCommon=sortedStats[0];
+  const mostCommon = sortedStats[sortedStats.length - 1];
+  const leastCommon = sortedStats[0];
 
   //Favourite count with Reduce
 
@@ -235,8 +237,17 @@ function App() {
           img={x.image}
           onFav={() => fav(x.url)}
           fav={x.favourite}
+          onClick={() => setselectedPokemon(x)}
         />
       ))}
+
+      {/* Call PokemonDetail.jsx and pass props to it */}
+      {selectedPokemon &&(
+          <PokemonDetail
+            pokemon={selectedPokemon}
+            onClose={()=>setselectedPokemon(null)}
+          ></PokemonDetail>
+        )}
 
       <div className="pagination">
         <button
@@ -268,12 +279,17 @@ function App() {
         {
           sortedStats.map(([type, x]) => (
             <h2 key={type}>
-              {type}:{x} ({((x/100)*100).toFixed(0)})%
+              {type}:{x} ({((x / 100) * 100).toFixed(0)})%
             </h2>
           ))
         }
-        <h3>Most Common Type={mostCommon[0]}-{mostCommon[1]}</h3>
-        <h3>Least Common Type={leastCommon[0]}-{leastCommon[1]}</h3>
+        {sortedStats.length > 0 && (
+          <>
+            <h3>Most Common Type={mostCommon[0]}-{mostCommon[1]}%</h3>
+            <h3>Least Common Type={leastCommon[0]}-{leastCommon[1]}%</h3>
+          </>
+        )}
+
       </div>
     </div>
   );
