@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import PokemonCard from './PokemonCard';
 
 function App() {
-  const [search, setSearch] = useState("");
-  const [pokemons, setPokemons] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [dropDown, setDropDown] = useState("all");
-  const [error, setError] = useState("");
-  const [favorite, setFav] = useState(false);
-  const [sort, setSort] = useState("default");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState(""); //SEARCHBAR
+  const [pokemons, setPokemons] = useState([]);  //POKEMON DATA
+  const [loading, setLoading] = useState(true);  //LOADING
+  const [dropDown, setDropDown] = useState("all");  //DROPDOWN (TYPE)
+  const [error, setError] = useState(""); // ERROR STATE
+  const [favorite, setFav] = useState(false); // FAVOURITE STATE
+  const [sort, setSort] = useState("default"); // SORTED STATE
+  const [currentPage, setCurrentPage] = useState(1);  //PAGINATION PURPOSE
 
   const perPage = 10;
 
@@ -65,7 +65,40 @@ function App() {
   if (sort === "za") {
     sortedList.sort((a, b) => b.name.localeCompare(a.name));
   }
+  if (sort === "favFirst") {
+    sortedList.sort((a, b) => {
+      if (a.favourite === !b.favourite) {
+        return -1;
+      }
+      else if (!a.favourite === b.favourite) {
+        return 1;
+      }
+      else {
+        return 0;
+      }
+    })
+  }
 
+
+  //Count of All pokemons to their Types
+
+  const stats=pokemons.reduce((sum,x)=>{
+  
+      sum[x.type]=(sum[x.type]||0)+1;
+      return sum;
+    
+  },{});
+
+  //Favourite count with Reduce
+
+  const favCount=pokemons.reduce((sum,x)=>{
+    if(x.favourite){
+      sum++;
+    }
+    return sum;
+  },0);
+
+  console.log(favCount)
   // Pagination
   const start = (currentPage - 1) * perPage;
   const end = start + perPage;
@@ -76,7 +109,9 @@ function App() {
   const pages = Array.from(
     { length: totalPages },
     (_, index) => index + 1
-  );
+  ); //Create An Array of Lenght-(totalPages)
+
+
   // Save to localStorage
   useEffect(() => {
     if (pokemons.length > 0) {
@@ -181,10 +216,12 @@ function App() {
           <option value="default">Default</option>
           <option value="az">A-Z</option>
           <option value="za">Z-A</option>
+          <option value="favFirst">Favourites First</option>
         </select>
 
-        <h3>{count}</h3>
-
+        {/* <h3>Total Pokemons : {count}</h3> */}
+        <h3>Favourties :{favCount}</h3>
+        <br></br>
         <button onClick={() => clearFav()}>Clear All Favourites</button>
         <button onClick={() => AllFav()}>All Favourites</button>
 
@@ -208,10 +245,9 @@ function App() {
       <div className="pagination">
         <button
           disabled={currentPage === 1}
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          Previous
+          onClick={() => setCurrentPage(currentPage - 1)}>Previous
         </button>
+
         <span>Page {currentPage} of {totalPages}</span>
 
         <button
@@ -225,7 +261,7 @@ function App() {
         <div className="pagination">
           {pages.map(page => (
             <button
-              disabled={currentPage===page}
+              className={currentPage === page ? "active" : ""}
               key={page}
               onClick={() => setCurrentPage(page)}
             >
@@ -233,7 +269,11 @@ function App() {
             </button>
           ))}
         </div>
-
+          {
+            Object.entries(stats).map(([type,x])=>{
+             return <h2 key={type}>{type}:{count}</h2>
+            })
+          }
       </div>
     </div>
   );

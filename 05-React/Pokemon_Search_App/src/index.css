@@ -30,3 +30,6 @@
 .body{
     background-color: rgb(117, 124, 225);
 }
+.active{
+    background-color: gold;
+}
