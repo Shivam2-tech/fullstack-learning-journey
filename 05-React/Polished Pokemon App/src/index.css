@@ -1,0 +1,661 @@
+/* ==========================================
+   KEEPING YOUR ORIGINAL STYLES 
+   ========================================== */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+  color: var(--dex-charcoal);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 800px;
+  background: transparent;
+  border: 60px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.15);
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+
+/* Base dropdown styling */
+select {
+  appearance: none;
+  /* removes default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px 40px 8px 12px;
+  /* extra right padding for arrow */
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  width: 200px;
+  /* adjust as needed */
+  background-color: white;
+}
+
+/* Custom arrow using background image or CSS */
+select {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23333' height='12' viewBox='0 0 24 24' width='12' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+}
+
+/* Optional: hover/focus states */
+select:hover {
+  border-color: #999;
+}
+
+select:focus {
+  outline: none;
+  border-color: #34a8e0;
+  /* accent color */
+  box-shadow: 0 0 0 2px rgba(52, 168, 224, 0.2);
+}
+
+/* Wrap your checkbox in a label */
+.theme-checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: inherit;
+  /* follows theme text color */
+}
+
+.theme-checkbox input[type="checkbox"] {
+  appearance: none;
+  /* remove default style */
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid currentColor;
+  /* border matches theme text color */
+  border-radius: 4px;
+  background: transparent;
+  margin-right: 8px;
+  cursor: pointer;
+  position: relative;
+}
+
+.theme-checkbox input[type="checkbox"]:checked {
+  background: rgb(238, 255, 0);
+  /* fill color when checked */
+  border-color: crimson;
+}
+
+.theme-checkbox input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: #000000;
+  font-size: 12px;
+  position: absolute;
+  top: 0;
+  left: 3px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.img {
+  height: 150px;
+  width: 200px;
+  border: 5px solid inherit;
+  margin-top: 10px;
+}
+
+.inp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin: 10px 0;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+#head {
+  display: flex;
+  justify-content: center;
+  color: crimson;
+  width: 250px;
+  height: auto;
+  align-items: center;
+  margin-top: 0px;
+  margin-bottom: 75px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 90%;
+  max-width: 600px;
+  margin: 10px 0;
+}
+
+.SearchBox {
+  width: 100%;
+  height: 55px;
+  background-color: #ffffff;
+  border: 2px solid #d1d5db;
+  border-radius: 50px;
+  padding: 0 60px;
+  font-size: 18px;
+  color: #1f2937;
+  outline: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.SearchBox,
+select {
+  transition: 0.3s;
+}
+
+.SearchBox:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 10px rgba(59, 130, 246, .3);
+}
+
+.dark .SearchBox {
+  background: #2b2d42;
+  border: 2px solid #4f5d75;
+  color: white;
+}
+
+.dark .SearchBox:focus {
+  border-color: #ffcb05;
+  box-shadow: 0 0 15px rgba(255, 203, 5, .4);
+}
+
+.search-icon {
+  position: absolute;
+  left: 20px;
+  font-size: 20px;
+}
+
+.pokeball-icon {
+  position: absolute;
+  right: 15px;
+  height: 35px;
+  width: 35px;
+}
+
+/* ==========================================
+   NEW LAYOUT FIXES 
+   ========================================== */
+.pokemon-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0px, 1fr));
+  gap: 15px;
+  padding: 20px;
+  width: 95%;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+.pagination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px 0;
+}
+
+.pagination-numbers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  max-width: 80%;
+}
+
+.pagination-numbers button {
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  border-radius: 5px;
+  border: 1px solid #333;
+  cursor: pointer;
+}
+
+.stats-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 15px;
+  width: 90%;
+  color: white;
+  margin-top: 20px;
+}
+
+.stat-pill {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.common-stats {
+  grid-column: 1 / -1;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 10px;
+}
+
+.fav-badge {
+  background: gold;
+  color: black;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.control-btn {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background: #444;
+  color: white;
+}
+
+.random-btn {
+  background: #ffcb05;
+  color: #2a75bb;
+  font-weight: bold;
+}
+
+.active {
+  background-color: gold !important;
+  color: black;
+  font-weight: bold;
+}
+
+/* ==========================================
+   MODAL BASICS
+   ========================================== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+  z-index: 1000;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 20px;
+  max-width: 400px;
+  width: 100%;
+  text-align: justify;
+  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.3);
+  transform: rotateY(180deg);
+  animation: flipIn 0.8s forwards;
+}
+
+.modal-content .detail-img {
+  width: 150px;
+  height: 150px;
+  object-fit: fill;
+  margin-bottom: 0%;
+  margin-left: 90px;
+  margin-top: 30px;
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+#clsbtn {
+  margin-right: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.7rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  background: #46c3f0;
+  color: #ffffff;
+  margin-top: 20px;
+}
+
+#clsbtn:hover {
+  transform: scale(1.05);
+}
+
+.light {
+  color: #222;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+.dark {
+  background: #121212;
+  color: white;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+@keyframes flipIn {
+  from {
+    transform: rotateY(90deg);
+    opacity: 0;
+  }
+
+  to {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+/* ==========================================
+   UPDATED COMPARE MODAL STYLES 
+   ========================================== */
+.modal-content.compare-modal {
+  width: 1000px;
+  max-width: 900px;
+  max-height: 500px;
+  overflow-y: auto;
+  text-align: center;
+  border-radius: 24px;
+  overflow: auto;
+}
+
+.dark .modal-content.compare-modal {
+  background-color: rgb(100, 87, 87);
+  color: white
+}
+
+/* Clear, balanced two-column side-by-side display */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 4rem;
+  row-gap: 2rem;
+  align-items: start;
+  position: relative;
+}
+
+/* The vertical divider line down the middle separating the columns */
+.compare-grid::after {
+  content: "";
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  left: 50%;
+  width: 1px;
+  background-color: #e0e0e0;
+  transform: translateX(-50%);
+}
+
+.compare-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: stretch;
+}
+
+.compare-img {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 10px auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Layout for each individual stat block */
+.compare-row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Wrapper pushing label to the left and numeric score to the right */
+.compare-text-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.compare-label {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #7f8c8d;
+  text-align: left;
+}
+
+.compare-value {
+  text-align: right;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #7f8c8d;
+}
+
+/* Horizontal grey background track beneath labels */
+.compare-track {
+  width: 100%;
+  height: 12px;
+  background: #f0f0f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+/* Clean, solid blue loading bar indicator extending left-to-right */
+.compare-fill {
+  height: 100%;
+  background: #34a8e0;
+  border-radius: 999px;
+  transition: width 0.4s ease-out;
+}
+
+/* Hide leftover elements from Image 2 scorecard rules */
+.Container,
+.p1Stats,
+.statName,
+.p2Stats,
+.compare-stat,
+.compare-score-row,
+.score-track,
+.winner-banner {
+  display: none;
+}
+
+/* Responsive collapse rules for smaller displays */
+@media (max-width: 768px) {
+  .compare-grid {
+    grid-template-columns: 1fr;
+    row-gap: 3rem;
+  }
+
+  .compare-grid::after {
+    display: none;
+  }
+}
+
+/* ==========================================
+   MISCELLANEOUS BUTTONS & BADGES
+   ========================================== */
+.stat-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.stat-fill {
+  height: 100%;
+  border-radius: 5px;
+}
+
+#prev,
+#next {
+  background: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #ddd;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#prev:hover,
+#next:hover {
+  transform: scale(1.05);
+  background-color: red;
+}
+
+#pages:hover {
+  background-color: red;
+}
+
+#fav-active {
+  background-color: palevioletred;
+  background: #ff4757;
+  color: white;
+  margin-right: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.7rem;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+#fav {
+  margin-right: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.7rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  background: #f0f0f0;
+  color: #666;
+}
+
+#fav:hover {
+  background-color: palevioletred;
+  background: #ff4757;
+  color: white;
+}
+
+#compare {
+  margin-right: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.7rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  background: #46c3f0;
+  color: #ffffff;
+}
+
+.type-badges {
+  margin: 0.5rem 0;
+}
+
+.type-badge {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+#pokesquare {
+  display: flex
+}
+
+#CloseCompBtn {
+  margin-right: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.7rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  background: #46c3f0;
+  color: #ffffff;
+  margin-top: 0px;
+}
