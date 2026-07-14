@@ -2,7 +2,6 @@ function YourTeam({ team, onRemove }) {
 
     return (
         <>
-            <h2>Your Team ({team.length}/6)</h2>
             {
                 team.length === 0 ?
                     <p>No Pokémon Selected</p>
@@ -10,7 +9,7 @@ function YourTeam({ team, onRemove }) {
                     team.map((pokemon) => (
                         <div className="team-card" key={pokemon.name} >
                             <img src={pokemon.image} width="100"/>
-                            <p>{pokemon.name}</p>
+                            <p>{pokemon.name.charAt(0).toUpperCase()+pokemon.name.slice(1)}</p>
                         </div>
                     ))
             }

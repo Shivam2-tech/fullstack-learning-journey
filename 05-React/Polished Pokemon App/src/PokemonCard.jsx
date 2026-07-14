@@ -63,8 +63,8 @@ function PokemonCard({ name, type, img, onFav, fav, onClick, toggle, isCompare, 
           }}
           style={{"margin-top":20}}
           disabled={!isInTeam && teamCount>=6  }
-          id="compare"> 
-          {isInTeam ? "REMOVE_TEAM" : "ADD-TEAM"}
+          id="my-team"> 
+          {isInTeam ? "REMOVE" : "ADD TEAM"}
           </button>
       </div>
     </div>

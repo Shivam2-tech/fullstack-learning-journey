@@ -714,10 +714,90 @@ select {
   border-radius: 12px;
 
   background: white;
+  border:solid 4px #ff8989
 
 }
-.dark .team-card{
 
-    background:#242424;
+.team-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
 
+  width: 70px;
+  height: 70px;
+
+  border-radius: 50%;
+
+  border: none;
+
+  font-size: 22px;
+
+  cursor: pointer;
+
+  z-index: 100;
+}
+
+.drawer-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, .45);
+
+  z-index: 150;
+
+}
+
+.team-drawer {
+
+  position: fixed;
+
+  top: 0;
+
+  right: 0;
+
+  width: 360px;
+
+  height: 100vh;
+
+  background: white;
+
+  z-index: 200;
+
+  padding: 20px;
+
+  overflow: auto;
+
+  box-shadow: -8px 0 20px rgba(0, 0, 0, .25);
+
+}
+
+.drawer-header {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 20px;
+
+}
+#my-team{
+  border-radius: 20px;
+  height:30px;
+  background-color: rgb(255, 255, 0);
+}
+#my-team:disabled{
+  border-radius: 20px;
+  height:30px;
+  background-color: rgba(245, 11, 11, 0.32);
+}
+#my-team:hover{
+  background-color: red;
+}
+.dark .team-card {
+
+  background: #242424;
 }

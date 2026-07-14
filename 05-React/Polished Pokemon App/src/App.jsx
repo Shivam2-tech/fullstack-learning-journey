@@ -18,7 +18,7 @@ function App() {
   const [comparePokemon, setComparePokemon] = useState([]);
   const { theme, toggleTheme } = useTheme();
   const [inteam, setInteam] = useState([]);
-  // const [showTeam, setShowTeam] = useState(false);
+  const [showTeam, setShowTeam] = useState(false);
 
   const perPage = 8; // Adjusted to 12 for better grid alignment (4x3 or 3x4)
 
@@ -289,7 +289,7 @@ function App() {
       {loading && <h2 className="loading-msg">Loading.......</h2>}
 
       {/* NEW: WRAPPED IN GRID CONTAINER */}
-      <div className='content'>
+
         <div className="pokemon-grid">
           {paginatedPage.map((x) => {
             const isCompare = comparePokemon.some(p => p.url === x.url)
@@ -317,11 +317,8 @@ function App() {
             )
           })}
         </div>
-
-        <aside>
-          <YourTeam team={inteam} onRemove={onTeamToggle} />
-        </aside>
-      </div>
+        
+        <button className="team-btn" onClick={()=>setShowTeam(true)}>MY TEAM</button>
 
       {selectedPokemon && (
         <PokemonDetail
@@ -330,26 +327,21 @@ function App() {
         ></PokemonDetail>
       )}
 
-      {/* <button onClick={() => setShowTeam(true)}>SHOW TEAM</button>
       {showTeam && (
-        <div className="modal">
-          <div className='modal-content'>
-            <h2>YOUR TEAM </h2>
-            {inteam.length === 0 ? (
-              <p>No team yet</p>
-            ) : (
-              inteam.map(p => (
-                <YourTeam
-                  key={p.name}
-                  name={p.name}
-                  onRemove={() => onTeamToggle(p)}
-                  img={p.image} />
-              ))
-            )}
-            <button onClick={() => setShowTeam(false)}>CLOSE</button>
+        <>
+          <div  className='drawer-overlay'
+                onClick={()=>setShowTeam(false)}>
           </div>
-        </div>
-      )} */}
+
+          <div className={`team-drawer ${showTeam ? "open" : ""}`}>
+            <div className='drawer-header'>
+
+              <button onClick={()=>setShowTeam(false)}>⚔️</button>
+            </div>
+            <YourTeam team={inteam} onRemove={onTeamToggle} />
+          </div>
+        </>
+      )} 
 
       {comparePokemon.length > 0 && (
         <div className="compare-status">
