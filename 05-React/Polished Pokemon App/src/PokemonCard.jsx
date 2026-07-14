@@ -1,23 +1,24 @@
-function PokemonCard({ name, type, img, onFav, fav, onClick, toggle, isCompare, len }) {
+function PokemonCard({ name, type, img, onFav, fav, onClick, toggle, isCompare, len ,isInTeam , teamCount, onTeamToggle}) {
   // Type to color mapping
   const typeColors = {
     grass: "#4CAF50",
-    fire: "#FF7043",
+    fire: "#ea7a3c",
     water: "#2196F3",
-    bug: "#9CCC65",
-    electric: "#FDD835",
-    fairy: "#F06292",
+    bug: "#94bc4a",
+    electric: "#e5c531",
+    fairy: "#e397d1",
     normal: "#BDBDBD",
     ground: "#D7CCC8",
     poison: "#9C27B0",
-    fighting: "#E64A19",
+    fighting: "#cb5f48",
     psychic: "#f098ff",
     rock: "#78909C",
     ghost: "#6C63FF",
-    dragon: "#FF6F00",
+    dragon: "#6a7baf",
     ice: "#80DEEA",
-    dark: "#424242",
-    steel: "#8bb4a4"
+    dark: "#736c75",
+    steel: "#8bb4a4",
+    flying:"#7da6de"
   };
 
   return (
@@ -55,7 +56,16 @@ function PokemonCard({ name, type, img, onFav, fav, onClick, toggle, isCompare, 
         >
           {isCompare ? "REMOVE" : "COMPARE"}
         </button>
-        {isCompare && <span style={{ textAlign: 'center', color: '#4CAF50', fontSize: '0.8rem', fontWeight: 600 }}>SELECTED ✓</span>}
+        <button
+          onClick={(e)=>{
+            e.stopPropagation();
+            onTeamToggle();
+          }}
+          style={{"margin-top":20}}
+          disabled={!isInTeam && teamCount>=6  }
+          id="compare"> 
+          {isInTeam ? "REMOVE_TEAM" : "ADD-TEAM"}
+          </button>
       </div>
     </div>
   );

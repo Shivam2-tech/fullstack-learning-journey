@@ -3,6 +3,7 @@ import PokemonCard from './PokemonCard';
 import PokemonDetail from './PokemonDetail';
 import ComparePokemon from './ComparePokemon';
 import { useTheme } from './ThemeContext';
+import YourTeam from './yourTeam';
 
 function App() {
   const [search, setSearch] = useState(""); //SEARCHBAR
@@ -15,27 +16,31 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);  //PAGINATION PURPOSE
   const [selectedPokemon, setselectedPokemon] = useState(null);
   const [comparePokemon, setComparePokemon] = useState([]);
-  const { theme, toggleTheme } = useTheme()
+  const { theme, toggleTheme } = useTheme();
+  const [inteam, setInteam] = useState([]);
+  // const [showTeam, setShowTeam] = useState(false);
 
   const perPage = 8; // Adjusted to 12 for better grid alignment (4x3 or 3x4)
 
-  const types={
+  const types = {
     grass: "#4CAF50",
-    fire: "#FF7043",
+    fire: "#ea7a3c",
     water: "#2196F3",
-    bug: "#9CCC65",
-    electric: "#FDD835",
-    fairy: "#F06292",
+    bug: "#94bc4a",
+    electric: "#e5c531",
+    fairy: "#e397d1",
     normal: "#BDBDBD",
     ground: "#D7CCC8",
     poison: "#9C27B0",
-    fighting: "#E64A19",
-    psychic: "#BA68C8",
+    fighting: "#cb5f48",
+    psychic: "#f098ff",
     rock: "#78909C",
     ghost: "#6C63FF",
-    dragon: "#FF6F00",
+    dragon: "#6a7baf",
     ice: "#80DEEA",
-    dark: "#424242"
+    dark: "#736c75",
+    steel: "#8bb4a4",
+    flying: "#7da6de"
   }
 
   // Filter by search
@@ -124,8 +129,7 @@ function App() {
   const pages = Array.from(
     { length: totalPages },
     (_, index) => index + 1
-  ); 
-
+  );
 
   function toggleCompare(pokemon) {
     const isPresent = comparePokemon.some(x => x.url === pokemon.url);
@@ -143,6 +147,15 @@ function App() {
     setselectedPokemon(pokemons[index]);
   }
 
+  function onTeamToggle(pokemon) {
+    const exists = inteam.some(x => x.name === pokemon.name)
+    if (exists) {
+      setInteam(inteam.filter(x => x.name !== pokemon.name));
+    }
+    else {
+      setInteam([...inteam, pokemon])
+    }
+  }
   // Save to localStorage
   useEffect(() => {
     if (pokemons.length > 0) {
@@ -205,20 +218,20 @@ function App() {
           src="/Pokemon-Logo-removebg-preview.png"
           alt="Pokemon Logo"
         />
-        
+
         <div className="search-container">
-            <span className="search-icon">🔎</span>
-            <input
-                className='SearchBox'
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Find a Pokémon..."
-            />
-            <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg" 
-                className="pokeball-icon" 
-                alt="pokeball"
-            />
+          <span className="search-icon">🔎</span>
+          <input
+            className='SearchBox'
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Find a Pokémon..."
+          />
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg"
+            className="pokeball-icon"
+            alt="pokeball"
+          />
         </div>
       </div>
 
@@ -229,6 +242,7 @@ function App() {
           <option>fire</option>
           <option>water</option>
           <option>bug</option>
+          <option>flying</option>
           <option>electric</option>
           <option>fairy</option>
           <option>normal</option>
@@ -244,7 +258,7 @@ function App() {
           <option>steel</option>
         </select>
 
-        <label className="theme-checkbox" style={{color:"black"}}>
+        <label className="theme-checkbox" style={{ color: "black" }}>
           FAVOURITES ⭐
           <input
             type="checkbox"
@@ -275,12 +289,17 @@ function App() {
       {loading && <h2 className="loading-msg">Loading.......</h2>}
 
       {/* NEW: WRAPPED IN GRID CONTAINER */}
-      <div className="pokemon-grid">
-        {paginatedPage.map((x) => {
+      <div className='content'>
+        <div className="pokemon-grid">
+          {paginatedPage.map((x) => {
             const isCompare = comparePokemon.some(p => p.url === x.url)
+            const isInTeam = inteam.some(p => x.name === p.name);
+
             const len = comparePokemon.length
+            const teamCount = inteam.length;
+
             return (
-            <PokemonCard
+              <PokemonCard
                 key={x.url}
                 name={x.name}
                 type={x.type}
@@ -291,9 +310,17 @@ function App() {
                 toggle={() => toggleCompare(x)}
                 isCompare={isCompare}
                 len={len}
-            />
+                isInTeam={isInTeam}
+                teamCount={teamCount}
+                onTeamToggle={() => onTeamToggle(x)}
+              />
             )
-        })}
+          })}
+        </div>
+
+        <aside>
+          <YourTeam team={inteam} onRemove={onTeamToggle} />
+        </aside>
       </div>
 
       {selectedPokemon && (
@@ -303,35 +330,56 @@ function App() {
         ></PokemonDetail>
       )}
 
-      {comparePokemon.length > 0 && (
-          <div className="compare-status">
-            <h2>Comparing: {comparePokemon.map(x => x.name).join(" vs ")}</h2>
+      {/* <button onClick={() => setShowTeam(true)}>SHOW TEAM</button>
+      {showTeam && (
+        <div className="modal">
+          <div className='modal-content'>
+            <h2>YOUR TEAM </h2>
+            {inteam.length === 0 ? (
+              <p>No team yet</p>
+            ) : (
+              inteam.map(p => (
+                <YourTeam
+                  key={p.name}
+                  name={p.name}
+                  onRemove={() => onTeamToggle(p)}
+                  img={p.image} />
+              ))
+            )}
+            <button onClick={() => setShowTeam(false)}>CLOSE</button>
           </div>
+        </div>
+      )} */}
+
+      {comparePokemon.length > 0 && (
+        <div className="compare-status">
+          <h2>Comparing: {comparePokemon.map(x => x.name).join(" vs ")}</h2>
+        </div>
       )}
 
       {comparePokemon.length === 2 && (
-        <ComparePokemon 
+        <ComparePokemon
           pokemon1={comparePokemon[0]}
           pokemon2={comparePokemon[1]}
-          onClose={() => setComparePokemon([])} 
+          onClose={() => setComparePokemon([])}
         />
       )}
 
       <div className="pagination">
         <div className="nav-btns">
-            <button
+          <button
             disabled={currentPage === 1}
             id="prev"
             onClick={() => setCurrentPage(currentPage - 1)}>Previous
-            </button>
-            <span>Page {currentPage} of {totalPages}</span>
-            <button
+          </button>
+          <span>Page {currentPage} of {totalPages}</span>
+          <button
             id="next"
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage(currentPage + 1)}
-            >
+          >
             Next
-            </button>
+          </button>
         </div>
 
         <div className="pagination-numbers">
@@ -344,22 +392,22 @@ function App() {
             >
               {page}
             </button>
-          ))} 
+          ))}
         </div>
 
         <div className="stats-display">
-            <h3 style={{gridColumn: '1/-1', textAlign: 'center'}}>STATS BY TYPE</h3>
-            {sortedStats.map(([type, x]) => (
-                <div key={type} className="stat-pill" style={{backgroundColor:types[type]}}>
-                    <strong>{type.toUpperCase()}</strong>: {x} ({((x / pokemons.length) * 100).toFixed(0)}%)
-                </div>
-            ))}
-            {sortedStats.length > 0 && (
-            <div className="common-stats">
-                <p><strong>Most Common:</strong> {mostCommon[0]}</p>
-                <p><strong>Least Common:</strong> {leastCommon[0]}</p>
+          <h3 style={{ gridColumn: '1/-1', textAlign: 'center' }}>STATS BY TYPE</h3>
+          {sortedStats.map(([type, x]) => (
+            <div key={type} className="stat-pill" style={{ backgroundColor: types[type] }}>
+              <strong>{type.toUpperCase()}</strong>: {x} ({((x / pokemons.length) * 100).toFixed(0)}%)
             </div>
-            )}
+          ))}
+          {sortedStats.length > 0 && (
+            <div className="common-stats">
+              <p><strong>Most Common:</strong> {mostCommon[0]}</p>
+              <p><strong>Least Common:</strong> {leastCommon[0]}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

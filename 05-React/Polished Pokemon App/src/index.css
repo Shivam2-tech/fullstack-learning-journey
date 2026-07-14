@@ -242,6 +242,7 @@ select {
   width: 95%;
   margin: 0 auto;
   justify-items: center;
+  flex: 1
 }
 
 .pagination {
@@ -578,7 +579,7 @@ select {
 }
 
 #fav-active {
-  background-color: palevioletred;
+  background-color: hsl(340, 57%, 74%);
   background: #ff4757;
   color: white;
   margin-right: 10px;
@@ -658,4 +659,65 @@ select {
   background: #46c3f0;
   color: #ffffff;
   margin-top: 0px;
+}
+
+.teamPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#teamImg {
+  width: 100px;
+  height: 100px;
+  padding-left: 50px;
+  padding-bottom: 20px;
+  overflow: auto;
+  overflow-y: auto;
+}
+
+.content {
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 30px;
+
+}
+
+.team-sidebar {
+
+  width: 280px;
+
+  position: sticky;
+
+  top: 20px;
+
+}
+
+.team-card {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-bottom: 12px;
+
+  padding: 10px;
+
+  border-radius: 12px;
+
+  background: white;
+
+}
+.dark .team-card{
+
+    background:#242424;
+
 }

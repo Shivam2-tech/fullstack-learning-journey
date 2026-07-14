@@ -1,27 +1,30 @@
 import { useState, useEffect } from "react";
+import EvolutionModal from "./EvolutionModal";
 
 function PokemonDetail({ pokemon, onClose }) {
     const [details, setDetails] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [showEvolve, setShowEvolve] = useState(false);
 
     const types = {
         grass: "#4CAF50",
-        fire: "#FF7043",
+        fire: "#ea7a3c",
         water: "#2196F3",
-        bug: "#9CCC65",
-        electric: "#FDD835",
-        fairy: "#F06292",
+        bug: "#94bc4a",
+        electric: "#e5c531",
+        fairy: "#e397d1",
         normal: "#BDBDBD",
         ground: "#D7CCC8",
         poison: "#9C27B0",
-        fighting: "#E64A19",
-        psychic: "#BA68C8",
+        fighting: "#cb5f48",
+        psychic: "#f098ff",
         rock: "#78909C",
         ghost: "#6C63FF",
-        dragon: "#FF6F00",
+        dragon: "#6a7baf",
         ice: "#80DEEA",
-        dark: "#424242",
-        steel: "#8bb4a4"
+        dark: "#736c75",
+        steel: "#8bb4a4",
+        flying: "#7da6de"
     };
 
     const colors = {
@@ -65,6 +68,20 @@ function PokemonDetail({ pokemon, onClose }) {
         }
     }, [pokemon]);
 
+    // showEvolution(Bulbasaur, [])
+    // │
+    // ├─ arr = ["Bulbasaur"]
+    // │
+    // └─ showEvolution(Ivysaur, arr)
+    //        │
+    //        ├─ arr = ["Bulbasaur", "Ivysaur"]
+    //        │
+    //        └─ showEvolution(Venusaur, arr)
+    //               │
+    //               ├─ arr = ["Bulbasaur", "Ivysaur", "Venusaur"]
+    //               │
+    //               └─ stop
+
     if (loading || !details) {
         return (
             <div className="modal">
@@ -99,7 +116,7 @@ function PokemonDetail({ pokemon, onClose }) {
                     {details.stats.map((stat) => (
                         <div key={stat.name} className="stat">
                             <div>
-                                {stat.name.charAt(0).toUpperCase()+stat.name.slice(1)}: {stat.value}
+                                {stat.name.charAt(0).toUpperCase() + stat.name.slice(1)}: {stat.value}
                             </div>
 
                             <div className="stat-bar">
@@ -115,6 +132,20 @@ function PokemonDetail({ pokemon, onClose }) {
                     ))}
                 </div>
 
+                {/* <h3>Evolution Chain</h3>
+                {evolve.map((x,i)=>{
+                    return  <p>
+                                {x}
+                                {i!==evolve.length-1 && "🔻"}
+                            </p>
+                })} */}
+                <button id="clsbtn" onClick={() => setShowEvolve(!showEvolve)}>
+                    {showEvolve ? "HIDE EVOLUTION" : "SHOW EVOLUTION"}
+                </button>
+
+                {showEvolve && (
+                    <EvolutionModal pokemon={pokemon} onClose={()=>setShowEvolve(false)} img={details.image}/>
+                )}
                 <button id="clsbtn" onClick={onClose}>Close</button>
             </div>
         </div>
