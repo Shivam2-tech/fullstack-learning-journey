@@ -318,7 +318,9 @@ function App() {
           })}
         </div>
         
-        <button className="team-btn" onClick={()=>setShowTeam(true)}>MY TEAM</button>
+        <div className="team-btn" onClick={()=>setShowTeam(true)}>
+        
+        </div>
 
       {selectedPokemon && (
         <PokemonDetail
@@ -336,7 +338,14 @@ function App() {
           <div className={`team-drawer ${showTeam ? "open" : ""}`}>
             <div className='drawer-header'>
 
-              <button onClick={()=>setShowTeam(false)}>⚔️</button>
+              <div onClick={()=>setShowTeam(false)}>
+                <img 
+                  src='/image.png'
+                  style={{"width":50}}
+                  id='closeBtn'
+                >
+                </img>
+              </div>
             </div>
             <YourTeam team={inteam} onRemove={onTeamToggle} />
           </div>

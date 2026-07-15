@@ -666,6 +666,7 @@ select {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: red;
 }
 
 #teamImg {
@@ -677,34 +678,11 @@ select {
   overflow-y: auto;
 }
 
-.content {
-
-  display: flex;
-
-  align-items: flex-start;
-
-  gap: 30px;
-
-}
-
-.team-sidebar {
-
-  width: 280px;
-
-  position: sticky;
-
-  top: 20px;
-
-}
-
 .team-card {
 
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
   gap: 10px;
 
   margin-bottom: 12px;
@@ -713,28 +691,44 @@ select {
 
   border-radius: 12px;
 
-  background: white;
-  border:solid 4px #ff8989
-
+  background: #d62828;
+  color: white;
+  border-left: 8px solid #8b0000;
+  border: solid 4px #ff8989
 }
 
 .team-btn {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-
-  width: 70px;
-  height: 70px;
-
-  border-radius: 50%;
-
+  bottom: 25px;
+  right: 25px;
+  width: 100px;
+  height: 100px;
+  padding: 0;
   border: none;
-
-  font-size: 22px;
-
+  border-radius: 50%;
+  background-color: #5c5353;
+  background-image: url('/POKEBALL.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 64px 64px;
+  /* medium size, adjust as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
   cursor: pointer;
+  z-index: 999;
+  overflow: hidden;
+  color: transparent;
+  /* hide text if you keep "MY TEAM" */
+}
 
-  z-index: 100;
+.team-btn:hover {
+  transform: scale(1.05);
+}
+
+#teamBtnImg {
+  width: 100px;
 }
 
 .drawer-overlay {
@@ -750,26 +744,32 @@ select {
 }
 
 .team-drawer {
-
   position: fixed;
 
   top: 0;
+  right: -360px;
 
-  right: 0;
-
-  width: 360px;
+  width: 340px;
 
   height: 100vh;
 
-  background: white;
+  background: rgb(188, 79, 79);
 
-  z-index: 200;
+  box-shadow: -8px 0 25px rgba(0, 0, 0, .25);
 
-  padding: 20px;
+  transition: .35s ease;
 
-  overflow: auto;
+  z-index: 1000;
 
-  box-shadow: -8px 0 20px rgba(0, 0, 0, .25);
+  overflow-y: auto;
+
+  padding: 25px;
+}
+
+
+.team-drawer.open {
+
+  right: 0;
 
 }
 
@@ -784,19 +784,64 @@ select {
   margin-bottom: 20px;
 
 }
-#my-team{
+
+#my-team {
   border-radius: 20px;
-  height:30px;
-  background-color: rgb(255, 255, 0);
+  height: 30px;
 }
-#my-team:disabled{
+
+#myteamImg {
+  width: 40px;
+  height: 40px;
+  transition: .25s;
+}
+
+#myteamImg:hover {
+  transform: scale(1.15) rotate(20deg);
+}
+
+#myteamImg:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  filter: grayscale(.6);
+}
+
+#myteamImg.catch {
+  animation: catch .45s ease;
+}
+
+@keyframes catch {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  40% {
+    transform: scale(.8) rotate(180deg);
+  }
+
+  70% {
+    transform: scale(1.2) rotate(320deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+#my-team:disabled {
   border-radius: 20px;
-  height:30px;
+  height: 30px;
   background-color: rgba(245, 11, 11, 0.32);
 }
-#my-team:hover{
-  background-color: red;
+
+#my-team:hover {
+  transform: scale(1.05);
 }
+
+#closeBtn:hover {
+  transform: scale(1.05);
+}
+
 .dark .team-card {
 
   background: #242424;

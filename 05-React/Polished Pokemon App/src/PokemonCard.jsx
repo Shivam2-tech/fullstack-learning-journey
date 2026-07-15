@@ -1,4 +1,4 @@
-function PokemonCard({ name, type, img, onFav, fav, onClick, toggle, isCompare, len ,isInTeam , teamCount, onTeamToggle}) {
+function PokemonCard({ name, type, img, onFav, fav, onClick, toggle, isCompare, len, isInTeam, teamCount, onTeamToggle }) {
   // Type to color mapping
   const typeColors = {
     grass: "#4CAF50",
@@ -18,13 +18,13 @@ function PokemonCard({ name, type, img, onFav, fav, onClick, toggle, isCompare, 
     ice: "#80DEEA",
     dark: "#736c75",
     steel: "#8bb4a4",
-    flying:"#7da6de"
+    flying: "#7da6de"
   };
 
   return (
-    <div className="card" onClick={onClick} style={{backgroundColor:typeColors[type]}}>
+    <div className="card" onClick={onClick} style={{ backgroundColor: typeColors[type] }}>
       <img className="img" src={img} alt={name} />
-      <h3>{name.charAt(0).toUpperCase()+ name.slice(1)}</h3>
+      <h3>{name.charAt(0).toUpperCase() + name.slice(1)}</h3>
 
       <div className="type-badges">
         <span
@@ -37,13 +37,14 @@ function PokemonCard({ name, type, img, onFav, fav, onClick, toggle, isCompare, 
 
       <div className="card-buttons">
         <button id="fav"
-                id={fav ? "fav-active" : "fav"} 
-                onClick={(e) => {e.stopPropagation();
-                                onFav();
-                                }
-                        } 
-                title="Toggle Favorite">
-                {fav ? "★" : "☆"}  FAV
+          id={fav ? "fav-active" : "fav"}
+          onClick={(e) => {
+            e.stopPropagation();
+            onFav();
+          }
+          }
+          title="Toggle Favorite">
+          {fav ? "★" : "☆"}  FAV
         </button>
 
         <button
@@ -57,15 +58,27 @@ function PokemonCard({ name, type, img, onFav, fav, onClick, toggle, isCompare, 
           {isCompare ? "REMOVE" : "COMPARE"}
         </button>
         <button
-          onClick={(e)=>{
+          id="my-team"
+          onClick={(e) => {
             e.stopPropagation();
+            if (!isInTeam && teamCount >= 6) return; // prevent adding when full
             onTeamToggle();
           }}
-          style={{"margin-top":20}}
-          disabled={!isInTeam && teamCount>=6  }
-          id="my-team"> 
-          {isInTeam ? "REMOVE" : "ADD TEAM"}
-          </button>
+          disabled={!isInTeam && teamCount >= 6}
+          style={{
+            marginTop: 20,
+            border: "none",
+            background: "transparent",
+            padding: 0,
+            cursor: !isInTeam && teamCount >= 6 ? "not-allowed" : "pointer"
+          }}
+        >
+          <img
+            id="myteamImg"
+            src={isInTeam ? "/Masterball.png" : "/image.png"}
+            alt={isInTeam ? "Remove from team" : "Add to team"}
+          />
+        </button>
       </div>
     </div>
   );
