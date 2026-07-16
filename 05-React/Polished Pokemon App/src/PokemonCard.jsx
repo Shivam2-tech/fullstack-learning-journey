@@ -75,6 +75,7 @@ function PokemonCard({ name, type, img, onFav, fav, onClick, toggle, isCompare, 
         >
           <img
             id="myteamImg"
+            title={isInTeam ? "Remove from Team" : "Add to Team"}
             src={isInTeam ? "/Masterball.png" : "/image.png"}
             alt={isInTeam ? "Remove from team" : "Add to team"}
           />

@@ -290,37 +290,41 @@ function App() {
 
       {/* NEW: WRAPPED IN GRID CONTAINER */}
 
-        <div className="pokemon-grid">
-          {paginatedPage.map((x) => {
-            const isCompare = comparePokemon.some(p => p.url === x.url)
-            const isInTeam = inteam.some(p => x.name === p.name);
+      <div className="pokemon-grid">
+        {paginatedPage.map((x) => {
+          const isCompare = comparePokemon.some(p => p.url === x.url)
+          const isInTeam = inteam.some(p => x.name === p.name);
 
-            const len = comparePokemon.length
-            const teamCount = inteam.length;
+          const len = comparePokemon.length
+          const teamCount = inteam.length;
 
-            return (
-              <PokemonCard
-                key={x.url}
-                name={x.name}
-                type={x.type}
-                img={x.image}
-                onFav={() => fav(x.url)}
-                fav={x.favourite}
-                onClick={() => setselectedPokemon(x)}
-                toggle={() => toggleCompare(x)}
-                isCompare={isCompare}
-                len={len}
-                isInTeam={isInTeam}
-                teamCount={teamCount}
-                onTeamToggle={() => onTeamToggle(x)}
-              />
-            )
-          })}
+          return (
+            <PokemonCard
+              key={x.url}
+              name={x.name}
+              type={x.type}
+              img={x.image}
+              onFav={() => fav(x.url)}
+              fav={x.favourite}
+              onClick={() => setselectedPokemon(x)}
+              toggle={() => toggleCompare(x)}
+              isCompare={isCompare}
+              len={len}
+              isInTeam={isInTeam}
+              teamCount={teamCount}
+              onTeamToggle={() => onTeamToggle(x)}
+            />
+          )
+        })}
+      </div>
+
+      <div className="team-btn" onClick={() => setShowTeam(true)}>
+        <div className='team-btn-inner'>
+          <span className="team-count">
+            {inteam.length}
+          </span>
         </div>
-        
-        <div className="team-btn" onClick={()=>setShowTeam(true)}>
-        
-        </div>
+      </div>
 
       {selectedPokemon && (
         <PokemonDetail
@@ -331,26 +335,26 @@ function App() {
 
       {showTeam && (
         <>
-          <div  className='drawer-overlay'
-                onClick={()=>setShowTeam(false)}>
+          <div className='drawer-overlay'
+            onClick={() => setShowTeam(false)}>
           </div>
 
           <div className={`team-drawer ${showTeam ? "open" : ""}`}>
             <div className='drawer-header'>
-
-              <div onClick={()=>setShowTeam(false)}>
-                <img 
+              <div className="teamHeader" onClick={() => setShowTeam(false)}>
+                <img
                   src='/image.png'
-                  style={{"width":50}}
+                  style={{ "width": 50, "height": 50 }}
                   id='closeBtn'
                 >
                 </img>
+                <h2 className='myteamHeader'>TEAM : ({inteam.length}/6)</h2>
               </div>
             </div>
             <YourTeam team={inteam} onRemove={onTeamToggle} />
           </div>
         </>
-      )} 
+      )}
 
       {comparePokemon.length > 0 && (
         <div className="compare-status">

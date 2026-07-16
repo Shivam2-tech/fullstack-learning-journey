@@ -8,8 +8,21 @@ function YourTeam({ team, onRemove }) {
                     :
                     team.map((pokemon) => (
                         <div className="team-card" key={pokemon.name} >
-                            <img src={pokemon.image} width="100"/>
-                            <p>{pokemon.name.charAt(0).toUpperCase()+pokemon.name.slice(1)}</p>
+                            <div
+                                className="remove-team"
+                                onClick={()=>onRemove(pokemon)}
+                            > 
+                                <img 
+                                    id="myteamImg"
+                                    src='/image.png' 
+                                    title="Remove From Team"
+                                    style={{
+                                        "width":32,
+                                        "height":32
+                                }}></img>
+                            </div>
+                            <img src={pokemon.image} width="100" />
+                            <p>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</p>
                         </div>
                     ))
             }
