@@ -4,6 +4,7 @@ import PokemonDetail from './PokemonDetail';
 import ComparePokemon from './ComparePokemon';
 import { useTheme } from './ThemeContext';
 import YourTeam from './yourTeam';
+import Dashboard from './Dashboard';
 
 function App() {
   const [search, setSearch] = useState(""); //SEARCHBAR
@@ -178,7 +179,7 @@ function App() {
             return {
               name: details.name,
               type: details.types[0].type.name,
-              type1:details.types[1]?.type.name || null,
+              type1: details.types[1]?.type.name || null,
               image: details.sprites.other.dream_world.front_default,
               url: pokemon.url,
               favourite: false
@@ -259,6 +260,8 @@ function App() {
           <option>steel</option>
         </select>
 
+
+
         <label className="theme-checkbox" style={{ color: "black" }}>
           FAVOURITES ⭐
           <input
@@ -276,10 +279,9 @@ function App() {
         </select>
 
         <button className="control-btn theme-toggle" onClick={toggleTheme}>
-          {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
+          {theme === "light" ? "🌙" : "☀️"}
         </button>
 
-        <span className="fav-badge">Favourites: {favCount}</span>
         <button className="control-btn" onClick={() => clearFav()}>Clear Favourites</button>
         <button className="control-btn" onClick={() => AllFav()}>Select All</button>
         <button className="control-btn random-btn" onClick={() => randomPokemon()}> SURPRISE ME 🎲</button>
@@ -318,6 +320,16 @@ function App() {
             />
           )
         })}
+      </div>
+
+      <div className='dashboardDiv'>
+        <Dashboard
+          total={pokemons.length}
+          fav={favCount}
+          team={inteam.length}
+          most={mostCommon}
+          less={leastCommon}
+        />
       </div>
 
       <div className="team-btn" onClick={() => setShowTeam(true)}>
@@ -409,12 +421,6 @@ function App() {
               <strong>{type.toUpperCase()}</strong>: {x} ({((x / pokemons.length) * 100).toFixed(0)}%)
             </div>
           ))}
-          {sortedStats.length > 0 && (
-            <div className="common-stats">
-              <p><strong>Most Common:</strong> {mostCommon[0]}</p>
-              <p><strong>Least Common:</strong> {leastCommon[0]}</p>
-            </div>
-          )}
         </div>
       </div>
     </div>
