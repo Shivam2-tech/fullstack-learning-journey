@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import EvolutionModal from "./EvolutionModal";
+import TypeModal from "./TypeModal";
 
 function PokemonDetail({ pokemon, onClose }) {
     const [details, setDetails] = useState(null);
     const [loading, setLoading] = useState(true);
     const [showEvolve, setShowEvolve] = useState(false);
+    const [showType, setShowType] = useState(false);
 
     const types = {
         grass: "#4CAF50",
@@ -42,6 +44,9 @@ function PokemonDetail({ pokemon, onClose }) {
                 const res = await fetch(pokemon.url);   // fetch details for this one Pokémon
                 const data = await res.json();
 
+                const typeRes = await fetch(data.types[0].type.url);
+                const typeData = await typeRes.json();
+
                 setDetails({
                     name: data.name,
                     type: data.types?.[0]?.type?.name || "unknown",
@@ -54,8 +59,11 @@ function PokemonDetail({ pokemon, onClose }) {
                     stats: data.stats.map((s) => ({
                         name: s.stat.name,
                         value: s.base_stat,
-                    })),
+                    }))
                 });
+
+                setDamage(typeData.damage_relations);
+
                 setLoading(false);
             } catch (err) {
                 console.error("Failed to fetch details", err);
@@ -107,7 +115,41 @@ function PokemonDetail({ pokemon, onClose }) {
                                 <li key={ability}>{ability}</li>
                             ))}
                         </ol>
-
+                        <h5 
+                            className="type-effective" 
+                            onClick={() => setShowType(true)}
+                            style={{"backgroundColor":types[details.type]}}>
+                            TYPE EFFECTIVENESS
+                        </h5>
+                        {showType && (
+                            <TypeModal
+                                pokemon={pokemon}
+                                onClose={() => setShowType(false)}
+                                type={details.type}
+                            />
+                        )}
+                        {/* <div className="typeEffective">
+                            <div className="less-efect">
+                                <p><strong>Strong Against</strong></p>
+                                <div className="type-badges">
+                                    {damage.double_damage_to.map(x => (
+                                        <span key={x.name} className="type-badge" style={{ backgroundColor: types[x.name] }}>
+                                            {x.name}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="more-effect">
+                                <p><strong>Weak Against</strong></p>
+                                <div className="type-badges">
+                                    {damage.double_damage_from.map(x => (
+                                        <span key={x.name} className="type-badge" style={{ backgroundColor: types[x.name] }}>
+                                            {x.name}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        </div> */}
                     </div>
                     <img className="detail-img" src={details.image} alt={details.name} />
                 </div>
@@ -144,7 +186,7 @@ function PokemonDetail({ pokemon, onClose }) {
                 </button>
 
                 {showEvolve && (
-                    <EvolutionModal pokemon={pokemon} onClose={()=>setShowEvolve(false)} img={details.image}/>
+                    <EvolutionModal pokemon={pokemon} onClose={() => setShowEvolve(false)} img={details.image} />
                 )}
                 <button id="clsbtn" onClick={onClose}>Close</button>
             </div>

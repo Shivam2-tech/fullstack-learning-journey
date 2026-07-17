@@ -178,6 +178,7 @@ function App() {
             return {
               name: details.name,
               type: details.types[0].type.name,
+              type1:details.types[1]?.type.name || null,
               image: details.sprites.other.dream_world.front_default,
               url: pokemon.url,
               favourite: false
@@ -303,6 +304,7 @@ function App() {
               key={x.url}
               name={x.name}
               type={x.type}
+              type1={x.type1}
               img={x.image}
               onFav={() => fav(x.url)}
               fav={x.favourite}

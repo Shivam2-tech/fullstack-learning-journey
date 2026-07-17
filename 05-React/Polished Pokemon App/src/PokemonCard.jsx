@@ -1,4 +1,4 @@
-function PokemonCard({ name, type, img, onFav, fav, onClick, toggle, isCompare, len, isInTeam, teamCount, onTeamToggle }) {
+function PokemonCard({ name, type,type1, img, onFav, fav, onClick, toggle, isCompare, len, isInTeam, teamCount, onTeamToggle }) {
   // Type to color mapping
   const typeColors = {
     grass: "#4CAF50",
@@ -33,6 +33,12 @@ function PokemonCard({ name, type, img, onFav, fav, onClick, toggle, isCompare, 
         >
           {type}
         </span>
+        {type1 && <span
+          className="type-badge"
+          style={{ backgroundColor: typeColors[type1] || "#BDBDBD" }}
+        >
+          {type1}
+        </span> }
       </div>
 
       <div className="card-buttons">
