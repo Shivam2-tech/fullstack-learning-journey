@@ -291,7 +291,11 @@ function App() {
 
       {error && <h2 className="error-msg">{error}</h2>}
       {!loading && filtered.length === 0 && <p className="no-data">No Pokemon Found</p>}
-      {loading && <Skeletoncard />}
+      {loading &&
+        Array.from({ length: 8 }).map((_, i) => (
+          <Skeletoncard key={i} />
+        ))
+      }
 
       {/* NEW: WRAPPED IN GRID CONTAINER */}
 

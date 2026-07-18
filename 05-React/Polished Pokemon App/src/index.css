@@ -894,9 +894,61 @@ select:focus {
   justify-content: center;
   align-items: center;
 }
-.charts-container{
-    width:95%;
-    padding:25px;
-    border-radius:20px;
-    box-shadow:0 8px 25px rgba(0,0,0,.08);;
+
+.charts-container {
+  width: 95%;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, .08);
+  ;
+}
+
+.skeleton-card {
+  animation: pulse 1.2s infinite;
+}
+
+.skeleton-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #ddd;
+  margin: 20px auto;
+}
+
+.skeleton-title {
+  width: 70%;
+  height: 20px;
+  background: #ddd;
+  margin: 12px auto;
+  border-radius: 8px;
+}
+
+.skeleton-type {
+  width: 45%;
+  height: 16px;
+  background: #ddd;
+  margin: 12px auto;
+  border-radius: 8px;
+}
+
+.skeleton-btn {
+  width: 80%;
+  height: 36px;
+  background: #ddd;
+  margin: 18px auto;
+  border-radius: 10px;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: .5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: .5;
+  }
 }
