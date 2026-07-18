@@ -5,6 +5,8 @@ import ComparePokemon from './ComparePokemon';
 import { useTheme } from './ThemeContext';
 import YourTeam from './yourTeam';
 import Dashboard from './Dashboard';
+import Charts from './Charts.jsx';
+import Skeletoncard from './Skeletoncard.jsx';
 
 function App() {
   const [search, setSearch] = useState(""); //SEARCHBAR
@@ -289,7 +291,7 @@ function App() {
 
       {error && <h2 className="error-msg">{error}</h2>}
       {!loading && filtered.length === 0 && <p className="no-data">No Pokemon Found</p>}
-      {loading && <h2 className="loading-msg">Loading.......</h2>}
+      {loading && <Skeletoncard />}
 
       {/* NEW: WRAPPED IN GRID CONTAINER */}
 
@@ -422,6 +424,7 @@ function App() {
             </div>
           ))}
         </div>
+        <Charts pokemons={pokemons} team={inteam} />
       </div>
     </div>
   );

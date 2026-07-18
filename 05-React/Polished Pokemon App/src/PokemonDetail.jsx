@@ -7,6 +7,7 @@ function PokemonDetail({ pokemon, onClose }) {
     const [loading, setLoading] = useState(true);
     const [showEvolve, setShowEvolve] = useState(false);
     const [showType, setShowType] = useState(false);
+    const [showShiny, setShowShiny] = useState(false);
 
     const types = {
         grass: "#4CAF50",
@@ -44,8 +45,6 @@ function PokemonDetail({ pokemon, onClose }) {
                 const res = await fetch(pokemon.url);   // fetch details for this one Pokémon
                 const data = await res.json();
 
-                const typeRes = await fetch(data.types[0].type.url);
-                const typeData = await typeRes.json();
 
                 setDetails({
                     name: data.name,
@@ -53,6 +52,7 @@ function PokemonDetail({ pokemon, onClose }) {
                     image:
                         data.sprites.other?.dream_world?.front_default ||
                         data.sprites.front_default,
+                    shiny: data.sprites.front_shiny,
                     height: data.height,
                     weight: data.weight,
                     abilities: data.abilities.map((a) => a.ability.name),
@@ -62,7 +62,7 @@ function PokemonDetail({ pokemon, onClose }) {
                     }))
                 });
 
-                setDamage(typeData.damage_relations);
+
 
                 setLoading(false);
             } catch (err) {
@@ -115,10 +115,10 @@ function PokemonDetail({ pokemon, onClose }) {
                                 <li key={ability}>{ability}</li>
                             ))}
                         </ol>
-                        <h5 
-                            className="type-effective" 
+                        <h5
+                            className="type-effective"
                             onClick={() => setShowType(true)}
-                            style={{"backgroundColor":types[details.type]}}>
+                            style={{ "backgroundColor": types[details.type] }}>
                             TYPE EFFECTIVENESS
                         </h5>
                         {showType && (
@@ -128,30 +128,13 @@ function PokemonDetail({ pokemon, onClose }) {
                                 type={details.type}
                             />
                         )}
-                        {/* <div className="typeEffective">
-                            <div className="less-efect">
-                                <p><strong>Strong Against</strong></p>
-                                <div className="type-badges">
-                                    {damage.double_damage_to.map(x => (
-                                        <span key={x.name} className="type-badge" style={{ backgroundColor: types[x.name] }}>
-                                            {x.name}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="more-effect">
-                                <p><strong>Weak Against</strong></p>
-                                <div className="type-badges">
-                                    {damage.double_damage_from.map(x => (
-                                        <span key={x.name} className="type-badge" style={{ backgroundColor: types[x.name] }}>
-                                            {x.name}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </div> */}
                     </div>
-                    <img className="detail-img" src={details.image} alt={details.name} />
+
+                    <img
+                        className="detail-img"
+                        src={showShiny ? details.shiny : details.image}
+                        alt={details.name} />
+
                 </div>
 
                 <div className="stats-container">
@@ -189,6 +172,8 @@ function PokemonDetail({ pokemon, onClose }) {
                     <EvolutionModal pokemon={pokemon} onClose={() => setShowEvolve(false)} img={details.image} />
                 )}
                 <button id="clsbtn" onClick={onClose}>Close</button>
+                <button id="clsbtn" onClick={() => setShowShiny(!showShiny)}>SHINY</button>
+
             </div>
         </div>
     );

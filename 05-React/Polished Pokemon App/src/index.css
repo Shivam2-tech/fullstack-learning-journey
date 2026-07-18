@@ -894,3 +894,9 @@ select:focus {
   justify-content: center;
   align-items: center;
 }
+.charts-container{
+    width:95%;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);;
+}
