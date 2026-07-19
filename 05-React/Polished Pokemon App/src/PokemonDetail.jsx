@@ -51,8 +51,8 @@ function PokemonDetail({ pokemon, onClose }) {
                     type: data.types?.[0]?.type?.name || "unknown",
                     image:
                         data.sprites.other?.dream_world?.front_default ||
-                        data.sprites.front_default,
-                    shiny: data.sprites.front_shiny,
+                        data.sprites.other["official-artwork"].front_default,
+                    shiny: data.sprites.other["official-artwork"].front_shiny,
                     height: data.height,
                     weight: data.weight,
                     abilities: data.abilities.map((a) => a.ability.name),
@@ -172,7 +172,7 @@ function PokemonDetail({ pokemon, onClose }) {
                     <EvolutionModal pokemon={pokemon} onClose={() => setShowEvolve(false)} img={details.image} />
                 )}
                 <button id="clsbtn" onClick={onClose}>Close</button>
-                <button id="clsbtn" onClick={() => setShowShiny(!showShiny)}>SHINY</button>
+                <button className="shiny-btn" onClick={() => setShowShiny(!showShiny)}>SHINY</button>
 
             </div>
         </div>

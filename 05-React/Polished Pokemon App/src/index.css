@@ -952,3 +952,171 @@ select:focus {
     opacity: .5;
   }
 }
+
+.shiny-btn {
+  position: relative;
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(45deg, #ffcb05, #ff9900);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease;
+}
+
+/* Hover scale effect */
+.shiny-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Shine effect */
+.shiny-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0.6) 50%,
+      rgba(255, 255, 255, 0.3) 100%);
+  transform: skewX(-25deg);
+}
+
+/* Animation for shine sweep */
+.shiny-btn:hover::before {
+  animation: shine 0.8s ease forwards;
+}
+
+@keyframes shine {
+  0% {
+    left: -75%;
+  }
+
+  100% {
+    left: 125%;
+  }
+}
+
+.quiz-reveal {
+  filter: brightness(1);
+  transition: .4s;
+}
+
+.quiz-hide {
+  filter: brightness(0.1);
+  transition: .4s;
+}
+
+.hmm{
+  background: #ffcb05;
+  /* Pokémon yellow */
+  border: 2px solid #3b4cca;
+  /* Pokémon blue */
+  font-weight: bold;
+  transition: transform 0.2s ease;
+  margin-top: 20px;
+}
+
+.hmm:hover {
+  transform: scale(1.1);
+  background: #3b4cca;
+  color: white;
+}
+
+.nextBtn {
+  background: #ff0000;
+  color: white;
+  border-radius: 50px;
+  padding: 12px 24px;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px #b00000;
+}
+
+.nextBtn:hover {
+  box-shadow: none;
+  transform: translateY(4px);
+}
+
+.nextBtn:disabled {
+  cursor: not-allowed;
+}
+
+.score-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #ffcb05;
+  /* Pokémon yellow */
+  border: 3px solid #3b4cca;
+  /* Pokémon blue */
+  border-radius: 50px;
+  padding: 5px;
+  font-weight: bold;
+  font-family: 'Press Start 2P', cursive;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.score-badge::before {
+  content: "⚪️";
+  /* Pokéball emoji placeholder */
+  margin-right: 8px;
+}
+
+.quiz-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 140px;
+  right: 25px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 999;
+  background: #4CAF50;
+  color: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .25);
+  transition: .25s;
+}
+
+.quiz-btn:hover {
+  transform: scale(1.2);
+}
+
+.quizHead {
+  display: flex;
+}
+.quizBottom {
+  display: flex;
+  margin-top: 20px;
+}
+.correct{
+    background:#4CAF50;
+    color:white;
+    border: 2px solid white;
+}
+.wrong{
+    background:#F44336;
+    color:white;
+    border: 2px solid white;
+}
+.correct:hover {
+  transform: scale(1.1);
+  color: white;
+}
+.wrong:hover {
+  transform: scale(1.1);
+  color: white;
+}

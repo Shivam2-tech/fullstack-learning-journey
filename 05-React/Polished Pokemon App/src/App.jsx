@@ -7,6 +7,7 @@ import YourTeam from './yourTeam';
 import Dashboard from './Dashboard';
 import Charts from './Charts.jsx';
 import Skeletoncard from './Skeletoncard.jsx';
+import PokemonQuiz from './PokemonQuiz.jsx';
 
 function App() {
   const [search, setSearch] = useState(""); //SEARCHBAR
@@ -22,6 +23,7 @@ function App() {
   const { theme, toggleTheme } = useTheme();
   const [inteam, setInteam] = useState([]);
   const [showTeam, setShowTeam] = useState(false);
+  const [showQuiz, setShowQuiz] = useState(false);
 
   const perPage = 8; // Adjusted to 12 for better grid alignment (4x3 or 3x4)
 
@@ -346,13 +348,6 @@ function App() {
         </div>
       </div>
 
-      {selectedPokemon && (
-        <PokemonDetail
-          pokemon={selectedPokemon}
-          onClose={() => setselectedPokemon(null)}
-        ></PokemonDetail>
-      )}
-
       {showTeam && (
         <>
           <div className='drawer-overlay'
@@ -375,6 +370,27 @@ function App() {
           </div>
         </>
       )}
+
+      <div 
+          className='quiz-btn'
+          onClick={()=>setShowQuiz(true)}>
+            🎮
+      </div>
+
+      {showQuiz && 
+          <PokemonQuiz 
+                pokemons={pokemons}
+                onClose={()=>setShowQuiz(false)} />
+      }
+    
+      {selectedPokemon && (
+        <PokemonDetail
+          pokemon={selectedPokemon}
+          onClose={() => setselectedPokemon(null)}
+        ></PokemonDetail>
+      )}
+
+
 
       {comparePokemon.length > 0 && (
         <div className="compare-status">
@@ -429,6 +445,7 @@ function App() {
           ))}
         </div>
         <Charts pokemons={pokemons} team={inteam} />
+
       </div>
     </div>
   );
