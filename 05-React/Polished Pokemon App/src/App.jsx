@@ -184,7 +184,8 @@ function App() {
               name: details.name,
               type: details.types[0].type.name,
               type1: details.types[1]?.type.name || null,
-              image: details.sprites.other.dream_world.front_default,
+              image: data.sprites.other?.dream_world?.front_default ||
+                data.sprites.other["official-artwork"].front_default,
               url: pokemon.url,
               favourite: false
             };
@@ -265,16 +266,6 @@ function App() {
         </select>
 
 
-
-        <label className="theme-checkbox" style={{ color: "black" }}>
-          FAVOURITES ⭐
-          <input
-            type="checkbox"
-            checked={favorite}
-            onChange={(e) => setFav(e.target.checked)}
-          />
-        </label>
-
         <select value={sort} onChange={(e) => setSort(e.target.value)}>
           <option value="default">Default Sort</option>
           <option value="az">A-Z</option>
@@ -282,12 +273,23 @@ function App() {
           <option value="favFirst">Favourites First</option>
         </select>
 
+        <label className="poke-toggle">
+          <input
+            type="checkbox"
+            checked={favorite}
+            onChange={(e) => setFav(e.target.checked)}
+          />
+          <span className="pokeball"></span>
+          <span className="label-text">FAVOURITES </span>
+        </label>
+
+
         <button className="control-btn theme-toggle" onClick={toggleTheme}>
           {theme === "light" ? "🌙" : "☀️"}
         </button>
 
         <button className="control-btn" onClick={() => clearFav()}>Clear Favourites</button>
-        <button className="control-btn" onClick={() => AllFav()}>Select All</button>
+        <button className="control-btn" onClick={() => AllFav()} style={{backgroundColor:'#4CAF50'}}>Select All</button>
         <button className="control-btn random-btn" onClick={() => randomPokemon()}> SURPRISE ME 🎲</button>
       </div>
 
@@ -371,18 +373,19 @@ function App() {
         </>
       )}
 
-      <div 
-          className='quiz-btn'
-          onClick={()=>setShowQuiz(true)}>
-            🎮
-      </div>
+      <img
+        src='/MINIGAME.png'
+        className='quiz-btn'
+        onClick={() => setShowQuiz(true)}>
 
-      {showQuiz && 
-          <PokemonQuiz 
-                pokemons={pokemons}
-                onClose={()=>setShowQuiz(false)} />
+      </img>
+
+      {showQuiz &&
+        <PokemonQuiz
+          pokemons={pokemons}
+          onClose={() => setShowQuiz(false)} />
       }
-    
+
       {selectedPokemon && (
         <PokemonDetail
           pokemon={selectedPokemon}

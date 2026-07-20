@@ -1,124 +1,192 @@
-# Polished Pokémon App
+# 🚀 Pokédex Pro
 
-A modern React application that lets you explore, search, and compare Pokémon with an intuitive and responsive interface.
+An interactive and feature-rich Pokédex built with **React** and the **PokéAPI**. Search, explore, compare, build your dream Pokémon team, visualize data with charts, and even test your Pokémon knowledge through a built-in quiz.
 
-## Features
+---
 
-- **Search Pokémon** - Find any Pokémon by name in real-time
-- **Filter by Type** - Browse Pokémon by their type (grass, fire, water, bug, electric, etc.)
-- **Favorite System** - Bookmark your favorite Pokémon for quick access
-- **Sort Options** - Organize Pokémon by different criteria
-- **Detailed View** - View comprehensive stats, abilities, and information for each Pokémon
-- **Evolution Chains** - Explore how Pokémon evolve through their stages
-- **Compare Pokémon** - Side-by-side comparison of stats and weights
-- **Pagination** - Browse Pokémon in organized pages
-- **Dark/Light Theme** - Toggle between dark and light modes (persists with localStorage)
-- **Type-based Coloring** - Each Pokémon type is color-coded for easy identification
+## 🌐 Live Demo
 
-## Tech Stack
+🔗 **Live Website:** *pokemonapp2.vercel.app*
 
-- **React 19** - UI library
-- **Vite** - Build tool and development server
-- **PokéAPI** - Data source for Pokémon information
-- **CSS** - Custom styling with theme support
-- **Context API** - State management for theme
+---
 
-## Getting Started
+## 📸 Preview
 
-### Prerequisites
-- Node.js (v16 or higher)
-- npm or yarn
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
+![alt text](image-4.png)
+![alt text](image-5.png)
 
-### Installation
+* Home Page
+* Pokémon Detail Modal
+* Team Builder
+* Compare Pokémon
+* Dashboard & Charts
+* Pokémon Quiz
 
-1. Clone or download the project
-2. Install dependencies:
-   ```bash
-   npm install
+---
 
-Running the Project
-Development mode:
-    npm run dev
+## ✨ Features
 
-The app will be available at http://localhost:5173
+### 🔍 Pokémon Explorer
 
-Build for production:
-    npm run build
+* Search Pokémon by name
+* Filter Pokémon by type
+* Sort Pokémon (A–Z, Z–A, Favorites First)
+* Pagination
+* Random Pokémon ("🎲 Surprise Me")
 
-Preview production build:
-    npm run preview
+### ⭐ Favorites
 
-Lint code:
-    npm lint
+* Mark Pokémon as favorites
+* View only favorites
+* Favorite counter
+* Select All Favorites
+* Clear All Favorites
+* Saved using LocalStorage
 
-Project Structure:
-    src/
-    ├── App.jsx               # Main application component
-    ├── main.jsx              # React entry point
-    ├── index.css             # Global styles
-    ├── PokemonCard.jsx       # Individual Pokémon card display
-    ├── PokemonDetail.jsx     # Detailed Pokémon information view
-    ├── ComparePokemon.jsx    # Pokémon comparison modal
-    ├── EvolutionModal.jsx    # Evolution chain display
-    └── ThemeContext.jsx      # Theme management (light/dark mode)
+### 👥 Team Builder
 
-Key Features Explained:
+* Add Pokémon to your team (up to 6)
+* Remove Pokémon from your team
+* Floating Poké Ball team button
+* Team drawer sidebar
+* Team count indicator
 
-1) Search & Filter
-    Filter the Pokémon list by name or type. Results update in real-time as you type.
+### 📊 Dashboard
 
-2) Favorites
-    Click the heart icon to save your favorite Pokémon. Your favorites are displayed with a highlighted indicator.
+* Total Pokémon
+* Favorite Count
+* Team Count
+* Most Common Type
+* Least Common Type
 
-3) Pokémon Details
-    Click any Pokémon card to view:
+### 📈 Data Visualization
 
-        Full stats (HP, Attack, Defense, Sp. Attack, Sp. Defense, Speed)
-        Weight and height
-        Abilities
-        Base experience
-        
-4) Evolution Chain
-    View the complete evolution line of any Pokémon from its basic form to final evolution.  
+* Pokémon by Type (Bar Chart)
+* Favorite Types (Pie Chart)
+* Color-coded charts using Recharts
 
-5) Comparison
-    Select two Pokémon to compare their stats side-by-side, making it easy to see differences.
+### ⚔️ Pokémon Comparison
 
-6) Theme
-    Toggle between light and dark modes using the theme button. Your preference is saved automatically.
+* Compare two Pokémon
+* Animated stat bars
+* Side-by-side comparison
 
-7) Color Type System
-    Each Pokémon type has a distinct color:
+### 📖 Pokémon Details
 
-        Grass: Green | Fire: Orange | Water: Blue | Electric: Yellow
-        Bug: Lime | Fairy: Pink | Normal: Gray | Ground: Brown
-        Poison: Purple | Fighting: Red | Psychic: Magenta | Rock: Slate
-        Ghost: Indigo | Dragon: Slate Blue | Ice: Cyan | Dark: Charcoal
-        Steel: Teal | Flying: Sky Blue
+* Base stats
+* Height & Weight
+* Abilities
+* Evolution Chain
+* Type Effectiveness
+* Shiny Pokémon Toggle
 
-8) Data Source
-    This app uses the free PokéAPI for all Pokémon data.  
+### 🎮 Pokémon Quiz
 
-9) Performance
-    Pagination (8 Pokémon per page) for smooth browsing
-    Lazy loading of detailed information
-    Optimized filtering and sorting
-    Theme preference caching
+* "Who's That Pokémon?" game
+* 10-question quiz
+* Randomized options
+* Score tracking
+* Trainer rank system
+* Play Again functionality
 
-10) Browser Support
-        Modern browsers with ES6+ support:
-            Chrome
-            Firefox
-            Safari
-            Edge
+### 🎨 UI Features
 
-11) Future Enhancements
-        Add ability to catch/collect Pokémon
-        Team building feature
-        Advanced filtering options
-        Pokédex completion tracker
-        Move list and details
+* Dark / Light Mode
+* Responsive Grid Layout
+* Animated Modals
+* Skeleton Loading Cards
+* Modern Card Design
+* Type-based Color Themes
 
-12) License
-        Open source - feel free to modify and use as needed.
+---
 
+## 🛠️ Built With
+
+* React
+* JavaScript (ES6+)
+* CSS3
+* PokéAPI
+* Recharts
+* Vercel
+
+---
+
+## 📚 What I Learned
+
+This project helped me practice and improve my understanding of:
+
+* React Components
+* Props
+* useState
+* useEffect
+* Conditional Rendering
+* Lists & Keys
+* API Fetching
+* Local Storage
+* Component Communication
+* State Management
+* Recharts
+* Responsive UI Design
+* Project Organization
+* Deploying React Apps with Vercel
+
+---
+
+## 🚀 Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/Shivam2-tech/pokemonapp2
+```
+
+Navigate to the project folder
+
+```bash
+cd pokemonapp2
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Start the development server
+
+```bash
+npm run dev
+```
+
+---
+
+## 🌍 API Used
+
+**PokéAPI**
+
+https://pokeapi.co/
+
+---
+
+## 📌 Future Improvements
+
+* Pokémon abilities explorer
+* Battle simulator
+* Advanced team analysis
+* Search by ability
+* Improved mobile responsiveness
+* More quiz categories
+
+---
+
+## 👨‍💻 Author
+
+**Shivam Shinde**
+
+Computer Engineering Student | Full Stack Developer
+
+If you enjoyed this project, feel free to ⭐ the repository!

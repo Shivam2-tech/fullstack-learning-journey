@@ -71,38 +71,16 @@ select:focus {
 
 /* Wrap your checkbox in a label */
 .theme-checkbox {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  cursor: pointer;
-  font-size: 14px;
-  color: inherit;
+  gap: 6px;
+  font-weight: bold;
+  color: #3b4cca;
 }
 
-.theme-checkbox input[type="checkbox"] {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 18px;
-  height: 18px;
-  border: 2px solid currentColor;
-  border-radius: 4px;
-  background: transparent;
-  margin-right: 8px;
-  cursor: pointer;
-  position: relative;
-}
-
-.theme-checkbox input[type="checkbox"]:checked {
-  background: rgb(238, 255, 0);
-  border-color: crimson;
-}
-
-.theme-checkbox input[type="checkbox"]:checked::after {
-  content: "✔";
-  color: #000000;
-  font-size: 12px;
-  position: absolute;
-  top: 0;
-  left: 3px;
+.theme-checkbox input {
+  accent-color: #ffcb05; /* yellow Pokéball vibe */
+  transform: scale(1.2);
 }
 
 .card {
@@ -133,12 +111,62 @@ select:focus {
 
 .inp {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  margin: 10px 0;
-  gap: 15px;
   flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+
+}
+
+.inp select {
+  padding: 8px 12px;
+  border: 2px solid #3b4cca;
+  border-radius: 8px;
+  background-color: white;
+  font-weight: bold;
+  color: #3b4cca;
+  cursor: pointer;
+}
+
+.poke-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #3b4cca; /* Pokémon blue */
+}
+
+.poke-toggle input {
+  display: none; /* hide default checkbox */
+}
+
+.pokeball {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #3b4cca;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #ff0000 50%, #ffffff 50%);
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.pokeball::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: #3b4cca;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.poke-toggle input:checked + .pokeball {
+  transform: scale(1.1);
+  box-shadow: 0 0 8px #ffcb05; /* glow when active */
 }
 
 #head {
@@ -286,20 +314,25 @@ select:focus {
 }
 
 .control-btn {
-  padding: 8px 12px;
-  border-radius: 5px;
-  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: bold;
   cursor: pointer;
-  background: #444;
-  color: white;
+  border: none;
+  background: #3b4cca;
+  color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.control-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #3b4cca;
 }
 
 .random-btn {
-  background: #ffcb05;
-  color: #2a75bb;
-  font-weight: bold;
+  background: linear-gradient(180deg, #ffcb05, #f5a623);
+  color: #3b4cca;
 }
-
 .active {
   background-color: gold !important;
   color: black;
@@ -968,6 +1001,13 @@ select:focus {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
   transition: transform 0.2s ease;
+  min-width: 120px;
+  height: 50px;
+  margin-bottom: 0;
+}
+
+.shiny-btn:disabled {
+  cursor: not-allowed;
 }
 
 /* Hover scale effect */
@@ -1008,21 +1048,48 @@ select:focus {
 .quiz-reveal {
   filter: brightness(1);
   transition: .4s;
+  display: block;
+  margin: 0 auto;
+  /* centers horizontally */
+  width: 180px;
+  animation: fadeIn 1s ease;
+  padding: 5px;
+  width: 300px;
+  /* fixed width */
+  height: 250px;
+  object-fit: contain;
 }
 
 .quiz-hide {
-  filter: brightness(0.1);
+  filter: brightness(0);
   transition: .4s;
+  display: block;
+  margin: 0 auto;
+  /* centers horizontally */
+  width: 180px;
+  animation: fadeIn 1s ease;
+  padding: 5px;
+  width: 250px;
+  /* fixed width */
+  height: 250px;
+  object-fit: contain;
 }
 
-.hmm{
+.hmm {
   background: #ffcb05;
   /* Pokémon yellow */
   border: 2px solid #3b4cca;
   /* Pokémon blue */
   font-weight: bold;
   transition: transform 0.2s ease;
-  margin-top: 20px;
+  margin-top: 20;
+}
+
+.options {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hmm:hover {
@@ -1031,38 +1098,19 @@ select:focus {
   color: white;
 }
 
-.nextBtn {
-  background: #ff0000;
-  color: white;
-  border-radius: 50px;
-  padding: 12px 24px;
-  font-size: 18px;
-  cursor: pointer;
-  box-shadow: 0 4px #b00000;
-}
-
-.nextBtn:hover {
-  box-shadow: none;
-  transform: translateY(4px);
-}
-
-.nextBtn:disabled {
-  cursor: not-allowed;
-}
-
 .score-badge {
-  display: inline-flex;
-  align-items: center;
   background: #ffcb05;
-  /* Pokémon yellow */
-  border: 3px solid #3b4cca;
-  /* Pokémon blue */
-  border-radius: 50px;
-  padding: 5px;
-  font-weight: bold;
-  font-family: 'Press Start 2P', cursive;
-  margin-left: 10px;
-  margin-bottom: 10px;
+  color: #2a75bb;
+
+  padding: 8px 16px;
+
+  border-radius: 999px;
+
+  font-weight: 700;
+
+  font-size: 1rem;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
 }
 
 .score-badge::before {
@@ -1097,26 +1145,76 @@ select:focus {
 
 .quizHead {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
 }
+
 .quizBottom {
   display: flex;
+  justify-content: space-between;
   margin-top: 20px;
 }
-.correct{
-    background:#4CAF50;
-    color:white;
-    border: 2px solid white;
+
+.correct {
+  background: #4CAF50;
+  color: white;
+  border: 2px solid white;
 }
-.wrong{
-    background:#F44336;
-    color:white;
-    border: 2px solid white;
+
+.wrong {
+  background: #F44336;
+  color: white;
+  border: 2px solid white;
 }
+
 .correct:hover {
   transform: scale(1.1);
   color: white;
 }
+
 .wrong:hover {
   transform: scale(1.1);
   color: white;
+}
+
+.feedBackCorrect {
+  background: linear-gradient(to bottom, #4caf50, #388e3c);
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  animation: fadeIn 0.6s ease, bounce 0.6s ease 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.FeedBackWrong {
+  background: linear-gradient(to bottom, #f44336, #c62828);
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  animation: fadeIn 0.6s ease, shake 0.4s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quizImgContainer {
+  width: 200px;
+  /* fixed width */
+  height: 200px;
+  /* fixed height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  /* centers horizontally */
+}
+.quizTitle{
+  display: flex;
+  justify-content: center;
+  color: yellow;
 }
