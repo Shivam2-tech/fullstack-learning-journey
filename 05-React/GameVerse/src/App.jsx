@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound";
 import Wishlist from "./pages/Wishlist";
 import Navbar from "./components/Navbar";
 import Layout from "./Layout/Layout";
+import Gamecard from "./components/Gamecard";
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
         <>
             <Routes>
                 <Route element={<Layout />}>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Home/>} />
                     <Route path="/library" element={<Library />} />
                     <Route path="/game/:id" element={<GameDetails />} />
                     <Route path="/wishlist" element={<Wishlist />} />
