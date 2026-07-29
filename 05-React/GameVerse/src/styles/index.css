@@ -1,7 +1,9 @@
 /* ===========================
    GAME DETAIL PAGE
 =========================== */
-
+/* body{
+    background-color: #33373b;
+} */
 .Header {
     display: flex;
     gap: 60px;
@@ -21,7 +23,7 @@
     height: 430px;
     object-fit: cover;
     border-radius: 18px;
-    box-shadow: 0 15px 35px rgba(0,0,0,.25);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .25);
 }
 
 .header-content {
@@ -48,92 +50,168 @@
    GENRES
 =========================== */
 
-.genre-list{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-    margin:20px 0;
+.genre-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
 }
 
 .genreName {
     padding: 8px 18px;
     border-radius: 999px;
-    background:#2c2c2c;
-    color:white;
-    font-weight:600;
-    transition:.25s;
-    cursor:pointer;
-    width:fit-content;
+    background: #2c2c2c;
+    color: white;
+    font-weight: 600;
+    transition: .25s;
+    cursor: pointer;
+    width: fit-content;
 }
 
-.genreName:hover{
-    transform:translateY(-3px);
+.genreName:hover {
+    transform: translateY(-3px);
 }
 
 /* ===========================
    PLATFORMS
 =========================== */
 
-.platforms{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-    margin-top:20px;
+.platforms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
 }
 
-.platforms .genreName{
-    background:#3b3b3b;
+.platforms .genreName {
+    background: #3b3b3b;
 }
 
 /* ===========================
    DESCRIPTION
 =========================== */
 
-.description{
-    max-width:1400px;
-    margin:50px auto;
-    padding:0 40px;
-    line-height:1.9;
-    font-size:1.05rem;
+.description {
+    max-width: 1400px;
+    margin: 50px auto;
+    padding: 0 40px;
+    line-height: 1.9;
+    font-size: 1.05rem;
 }
 
-.description h2{
-    margin-bottom:20px;
-    font-size:2rem;
+.description h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
 }
 
 /* ===========================
    RESPONSIVE
 =========================== */
 
-@media(max-width:950px){
+@media(max-width:950px) {
 
-    .Header{
-        flex-direction:column;
-        gap:30px;
+    .Header {
+        flex-direction: column;
+        gap: 30px;
     }
 
-    .img-container img{
-        max-width:100%;
-        height:320px;
+    .img-container img {
+        max-width: 100%;
+        height: 320px;
     }
 
-    .header-content h2:first-child{
-        font-size:2.3rem;
+    .header-content h2:first-child {
+        font-size: 2.3rem;
     }
 
 }
-.screenshots{
+
+.screenshots {
     border-radius: 20px;
     width: 350px;
     margin: 20px;
 }
-.screenshots:hover{
-    transform:translateY(-8px);
-     transition:.25s;
-     box-shadow: 0 0 9px 0px black;
-}
-.scr-head{
-    margin-left:25px
 
+.screenshots:hover {
+    transform: translateY(-8px);
+    transition: .25s;
+    box-shadow: 0 0 9px 0px black;
+}
+
+.scr-head {
+    margin-left: 25px
+}
+
+.wishlist-btn {
+    background: linear-gradient(180deg, #0070d1 0%, #0050a0 100%);
+    /* PS blue */
+    color: #fff;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 50px;
+    /* rounded corners */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.wishlist-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(180deg, #0080f0 0%, #0060c0 100%);
+}
+
+.wishlist-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.skeleton {
+    background: linear-gradient(90deg,
+            #e7dcdc 25%,
+            #c9c4c4 50%,
+            #e9e2e2 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.4s infinite;
+}
+
+.skeleton-card {
+    border-radius: 16px;
+    overflow: hidden;
+    background: #f2ecec;
+}
+
+.skeleton-image {
+    width: 100%;
+    height: 220px;
+}
+
+.skeleton-content {
+    padding: 16px;
+}
+
+.skeleton-title {
+    width: 70%;
+    height: 22px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
+.skeleton-text {
+    width: 40%;
+    height: 16px;
+    border-radius: 6px;
+}
+
+@keyframes skeleton-loading {
+    from {
+        background-position: 200% 0;
+    }
+
+    to {
+        background-position: -200% 0;
+    }
 }
