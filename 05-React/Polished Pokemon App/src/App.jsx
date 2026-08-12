@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
-import PokemonCard from './PokemonCard';
-import PokemonDetail from './PokemonDetail';
-import ComparePokemon from './ComparePokemon';
-import { useTheme } from './ThemeContext';
-import YourTeam from './yourTeam';
-import Dashboard from './Dashboard';
-import Charts from './Charts.jsx';
-import Skeletoncard from './Skeletoncard.jsx';
-import PokemonQuiz from './PokemonQuiz.jsx';
+import PokemonCard from './components/PokemonCard.jsx';
+import PokemonDetail from './components/PokemonDetail.jsx';
+import ComparePokemon from './components/ComparePokemon.jsx';
+import { useTheme } from './contexts/ThemeContext.jsx';
+import YourTeam from './components/YourTeam.jsx';
+import Dashboard from './components/Dashboard.jsx';
+import Charts from './components/Charts.jsx';
+import Skeletoncard from './components/Skeletoncard.jsx';
+import PokemonQuiz from './components/PokemonQuiz.jsx';
+import types from './utils/typeColors.js';
 
 function App() {
   const [search, setSearch] = useState(""); //SEARCHBAR
@@ -26,27 +27,6 @@ function App() {
   const [showQuiz, setShowQuiz] = useState(false);
 
   const perPage = 8; // Adjusted to 12 for better grid alignment (4x3 or 3x4)
-
-  const types = {
-    grass: "#4CAF50",
-    fire: "#ea7a3c",
-    water: "#2196F3",
-    bug: "#94bc4a",
-    electric: "#e5c531",
-    fairy: "#e397d1",
-    normal: "#BDBDBD",
-    ground: "#D7CCC8",
-    poison: "#9C27B0",
-    fighting: "#cb5f48",
-    psychic: "#f098ff",
-    rock: "#78909C",
-    ghost: "#6C63FF",
-    dragon: "#6a7baf",
-    ice: "#80DEEA",
-    dark: "#736c75",
-    steel: "#8bb4a4",
-    flying: "#7da6de"
-  }
 
   // Filter by search
   const filtered = pokemons.filter(x =>

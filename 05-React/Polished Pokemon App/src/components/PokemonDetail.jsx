@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import EvolutionModal from "./EvolutionModal";
 import TypeModal from "./TypeModal";
+import typeColors from "../utils/typeColors";
 
 function PokemonDetail({ pokemon, onClose }) {
     const [details, setDetails] = useState(null);
@@ -8,27 +9,6 @@ function PokemonDetail({ pokemon, onClose }) {
     const [showEvolve, setShowEvolve] = useState(false);
     const [showType, setShowType] = useState(false);
     const [showShiny, setShowShiny] = useState(false);
-
-    const types = {
-        grass: "#4CAF50",
-        fire: "#ea7a3c",
-        water: "#2196F3",
-        bug: "#94bc4a",
-        electric: "#e5c531",
-        fairy: "#e397d1",
-        normal: "#BDBDBD",
-        ground: "#D7CCC8",
-        poison: "#9C27B0",
-        fighting: "#cb5f48",
-        psychic: "#f098ff",
-        rock: "#78909C",
-        ghost: "#6C63FF",
-        dragon: "#6a7baf",
-        ice: "#80DEEA",
-        dark: "#736c75",
-        steel: "#8bb4a4",
-        flying: "#7da6de"
-    };
 
     const colors = {
         hp: "green",
@@ -102,7 +82,7 @@ function PokemonDetail({ pokemon, onClose }) {
 
     return (
         <div className="modal">
-            <div className="modal-content" style={{ backgroundColor: types[details.type] }}>
+            <div className="modal-content" style={{ backgroundColor: typeColors[details.type] }}>
                 <div id="pokesquare">
                     <div id="pokedet">
                         <h4>Name: {details.name.charAt(0).toUpperCase() + details.name.slice(1)}</h4>
@@ -118,7 +98,7 @@ function PokemonDetail({ pokemon, onClose }) {
                         <h5
                             className="type-effective"
                             onClick={() => setShowType(true)}
-                            style={{ "backgroundColor": types[details.type] }}>
+                            style={{ "backgroundColor": typeColors[details.type] }}>
                             TYPE EFFECTIVENESS
                         </h5>
                         {showType && (
