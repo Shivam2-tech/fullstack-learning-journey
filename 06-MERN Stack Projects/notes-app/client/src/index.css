@@ -24,10 +24,12 @@ body {
 
 .card .head {
     color: #1F2937;
+    font-size: larger;
 }
 
 .card .secondary {
     color: #6B7280;
+    font-size: medium;
 }
 
 .buttons {
