@@ -1,0 +1,188 @@
+body {
+    background-color: #F6F3FF;
+}
+
+.container {
+    max-width: 700px;
+    margin: 10px auto;
+    padding: 24px;
+}
+
+.card {
+    background: #FFFFFF;
+    border: 2px solid #E9D5FF;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+.card .head {
+    color: #1F2937;
+}
+
+.card .secondary {
+    color: #6B7280;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons .dltBtn {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 20px;
+    background-color: rgb(251, 117, 117);
+    width: 100px;
+    transition: transform 0.2s ease
+}
+
+.dltBtn:hover {
+    transform: scale(1.05)
+}
+
+.buttons .editBtn {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 20px;
+    background-color: #E9D5FF;
+    width: 100px;
+    transition: transform 0.2s ease
+}
+
+.editBtn:hover {
+    transform: scale(1.05);
+}
+
+.img {
+    position: fixed;
+    /* keeps it in place even when scrolling */
+    bottom: 20px;
+    /* distance from bottom */
+    right: 20px;
+    /* distance from right */
+    width: 100px;
+    /* size of the circle */
+    height: 100px;
+    border-radius: 50%;
+    /* makes it circular */
+    color: white;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.img:hover {
+    transform: scale(1.1);
+}
+
+.inpStyle {
+    background: #fff;
+    /* white card look */
+    border-radius: 10px;
+    /* same rounded corners as .card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* subtle shadow */
+    padding: 20px;
+    width: 100%;
+    /* stretch to container width */
+    max-width: 500px;
+    /* optional: keep it neat */
+    margin: 20px auto;
+    /* center the card */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Make inputs fill the card width */
+.titleInp,
+.contentInp {
+    width: 100%;
+    box-sizing: border-box;
+    /* ensures padding doesn’t shrink width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+/* Style the submit button */
+.submit {
+    display: block;
+    width: 100%;
+    background-color: #6c5ce7;
+    /* your purple accent */
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.submit:hover {
+    background-color: #5a4bcf;
+}
+
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+.inpStyle {
+    position: relative;
+
+    background: #fff;
+    border: 2px solid #E9D5FF;
+    border-radius: 20px;
+
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.closeBtn {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+
+    border: none;
+    background: none;
+
+    font-size: 28px;
+    cursor: pointer;
+
+    color: #6B7280;
+}
+
+.closeBtn:hover {
+    color: #1F2937;
+}
+
+.error {
+    color: #dc2626;
+    font-size: 14px;
+    margin: -8px 0 10px;
+}
