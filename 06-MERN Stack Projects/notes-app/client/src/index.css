@@ -186,3 +186,20 @@ body {
     font-size: 14px;
     margin: -8px 0 10px;
 }
+
+.emptyMessage {
+    margin: 0 auto;
+    padding: 18px 20px;
+    background: #f5f3ff;
+    border: 1px dashed #d8b4fe;
+    border-radius: 18px;
+    color: #5b21b6;
+    font-size: 1rem;
+    width: fit-content;
+}
+
+.noteImg {
+    width: 150px;
+    display: block;
+    margin: 0 auto;
+}

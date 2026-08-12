@@ -34,16 +34,21 @@ function Home() {
 
 
             <div className="container">
-                {
+                <img className="noteImg" src="/NoteBanner.png" />
+
+                {notes.length === 0 ? (
+                    <p className="emptyMessage">No notes yet</p>
+                ) : (
                     notes.map(note => (
                         <NoteCard
+                            key={note._id}
                             note={note}
                             setNotes={setNotes}
                             deleteNotes={() => deleteNotes(note._id)}
                             setEditingNote={handleEdit}
                         />
                     ))
-                }
+                )}
             </div>
 
             <img className="img" src="/ADDBTN.png" onClick={() => setShowModal(!showModal)}></img>
