@@ -9,6 +9,7 @@ app.use(express.json());
 DBConnect();
 app.use("/notes",route);
 
-app.listen(3000, () => {
+const PORT=process.env.PORT || 3000;
+app.listen(PORT,"0.0.0.0", () => {
     console.log("Server Started Running on : localhost:3000")
 })
