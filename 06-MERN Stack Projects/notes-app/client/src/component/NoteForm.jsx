@@ -30,7 +30,7 @@ function NoteForm({
         if (editingNote) {
 
             const res = await fetch(
-                "http://localhost:3000/notes/" + editingNote._id,
+                `${import.meta.env.VITE_API_URL}/notes/` + editingNote._id,
                 {
                     method: "PUT",
                     headers: {
@@ -59,7 +59,7 @@ function NoteForm({
         } else {
 
             const res = await fetch(
-                "http://localhost:3000/notes",
+                `${import.meta.env.VITE_API_URL}/notes/`,
                 {
                     method: "POST",
                     headers: {

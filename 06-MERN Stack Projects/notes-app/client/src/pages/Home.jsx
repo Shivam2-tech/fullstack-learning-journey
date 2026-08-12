@@ -10,7 +10,7 @@ function Home() {
 
     useEffect(() => {
         async function fetchData() {
-            const res = await fetch("http://localhost:3000/notes");
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/notes`);
             const data = await res.json();
             setNotes(data)
         }
@@ -22,7 +22,7 @@ function Home() {
         setShowModal(true);
     }
     async function deleteNotes(id) {
-        const res = await fetch("http://localhost:3000/notes/" + id, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/notes/` + id, {
             method: "DELETE"
         })
         const data = await res.json();
@@ -46,7 +46,7 @@ function Home() {
                 }
             </div>
 
-            <img className="img" src="../public/ADDBTN.png" onClick={() => setShowModal(!showModal)}></img>
+            <img className="img" src="/ADDBTN.png" onClick={() => setShowModal(!showModal)}></img>
             {showModal &&
                 <NoteForm
                     setNotes={setNotes}
